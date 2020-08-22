@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<PropertyList>
+	
+	<!-- SUBARU 15/40 windturbine -->
+	<!-- Rotor hub height 22m     -->
+	
+	<path>SUBARU_15-40.ac</path>
+	
+	
+	<!-- winturbine animation -->
+	<animation>
+		<type>rotate</type>
+		<object-name>Head</object-name>
+		<object-name>Head2</object-name>
+		<object-name>Hub</object-name>
+		<object-name>Blade1</object-name>
+		<object-name>Blade2</object-name>
+		<object-name>Blade3</object-name>
+		<property>/environment/wind-from-heading-deg</property>
+		<offset-deg>-90</offset-deg>
+		<factor>-1</factor>
+		<center>
+			<x-m>0.0</x-m>
+			<y-m>0.0</y-m>
+			<z-m>0.0</z-m>
+		</center>
+		<axis>
+			<x>0.0</x>
+			<y>0.0</y>
+			<z>1.0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>spin</type>
+		<object-name>Hub</object-name>
+		<object-name>Blade1</object-name>
+		<object-name>Blade2</object-name>
+		<object-name>Blade3</object-name>
+		<use-personality type="bool">true</use-personality>
+		<property>/environment/wind-speed-kt</property>
+		<!--
+		<factor>
+			<random>
+				<min>0.4</min>
+				<max>0.6</max>
+			</random>
+		</factor>
+		-->
+		<interpolation>
+			<entry><ind>  0.0 </ind><dep>  0.0 </dep></entry>
+			<entry><ind>  4.0 </ind><dep>  8.0 </dep></entry>
+			<entry><ind> 22.0 </ind><dep> 74.0 </dep></entry>
+			<entry><ind> 50.0 </ind><dep> 74.0 </dep></entry>
+			<entry><ind> 51.0 </ind><dep> 0.0 </dep></entry>
+			<entry><ind>100.0 </ind><dep> 0.0 </dep></entry>
+		</interpolation>
+		<starting-pos-deg>
+			<random>
+				<min>0</min>
+				<max>360</max>
+			</random>
+		</starting-pos-deg>
+		<axis>
+			<x1-m> 0.000</x1-m>
+			<y1-m>-3.063</y1-m>
+			<z1-m>21.964</z1-m>
+			<x2-m> 0.000</x2-m>
+			<y2-m>-1.070</y2-m>
+			<z2-m>21.790</z2-m>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>Blade1</object-name>
+		<property>/environment/wind-speed-kt</property>
+		<interpolation>
+			<entry><ind>  0.0 </ind><dep>  0.0 </dep></entry>
+			<entry><ind> 22.0 </ind><dep>  0.0 </dep></entry>
+			<entry><ind> 50.0 </ind><dep>-85.0 </dep></entry>
+			<entry><ind>300.0 </ind><dep>-85.0 </dep></entry>
+		</interpolation>
+		<axis>
+			<x1-m> 0.000</x1-m>
+			<y1-m>-1.779</y1-m>
+			<z1-m>22.352</z1-m>
+			<x2-m> 0.077</x2-m>
+			<y2-m>-1.107</y2-m>
+			<z2-m>30.123</z2-m>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>Blade2</object-name>
+		<property>/environment/wind-speed-kt</property>
+		<interpolation>
+			<entry><ind>  0.0 </ind><dep>  0.0 </dep></entry>
+			<entry><ind> 22.0 </ind><dep>  0.0 </dep></entry>
+			<entry><ind> 50.0 </ind><dep>-85.0 </dep></entry>
+			<entry><ind>300.0 </ind><dep>-85.0 </dep></entry>
+		</interpolation>
+		<axis>
+			<x1-m> 0.432</x1-m>
+			<y1-m>-1.844</y1-m>
+			<z1-m>21.607</z1-m>
+			<x2-m> 7.148</x2-m>
+			<y2-m>-2.197</y2-m>
+			<z2-m>17.656</z2-m>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>Blade3</object-name>
+		<property>/environment/wind-speed-kt</property>
+		<interpolation>
+			<entry><ind>  0.0 </ind><dep>  0.0 </dep></entry>
+			<entry><ind> 22.0 </ind><dep>  0.0 </dep></entry>
+			<entry><ind> 50.0 </ind><dep>-85.0 </dep></entry>
+			<entry><ind>300.0 </ind><dep>-85.0 </dep></entry>
+		</interpolation>
+		<axis>
+			<x1-m>-0.432</x1-m>
+			<y1-m>-1.844</y1-m>
+			<z1-m>21.607</z1-m>
+			<x2-m>-7.225</x2-m>
+			<y2-m>-2.186</y2-m>
+			<z2-m>17.789</z2-m>
+		</axis>
+	</animation>
+	
+<!-- LOD -->
+	<animation>
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>20000</max-m>
+	</animation>
+
+</PropertyList>

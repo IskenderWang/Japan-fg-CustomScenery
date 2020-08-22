@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<PropertyList>
+
+<!-- Particle Effects                                                          -->
+<!-- washing water spray 2 meters -->>
+
+	<particlesystem>
+		<name>washing_water_particle</name>
+		
+		<texture>washing_water.png</texture>
+		<emissive>false</emissive>
+		<lighting>false</lighting>
+		
+		<!-- 
+		<offsets>
+			<x-m>0.647</x-m>
+			<y-m>0.433</y-m>
+			<z-m>3.642</z-m>
+		</offsets>
+		-->
+		
+		<attach>local</attach>
+		   
+		<placer>
+			<type>point</type>
+		</placer>
+		
+		<shooter>
+			<theta-min-deg>30</theta-min-deg>
+			<theta-max-deg>32</theta-max-deg>
+			<phi-min-deg>69</phi-min-deg>
+			<phi-max-deg>71</phi-max-deg>
+			<speed-mps>
+				<!--<value>20</value>-->
+				<property>/scenery/RJBM/Aircraft_Washing_System/washing/position-norm</property>
+					<interpolation>
+						<entry>
+							<ind>0.0</ind>
+							<dep>1</dep>
+						</entry>
+						<entry>
+							<ind>0.7</ind>
+							<dep>2</dep>
+						</entry>
+						<entry>
+						<ind>1.0</ind>
+						<dep>7</dep>
+						</entry>
+					</interpolation>
+				<spread>0</spread>
+			</speed-mps>
+			<rotation-speed>
+				<x-max-deg-sec>15</x-max-deg-sec>
+				<x-min-deg-sec>-15</x-min-deg-sec>
+				<y-max-deg-sec>15</y-max-deg-sec>
+				<y-min-deg-sec>-15</y-min-deg-sec>
+				<z-max-deg-sec>15</z-max-deg-sec>
+				<z-min-deg-sec>-15</z-min-deg-sec>
+			</rotation-speed>
+		</shooter>
+		
+		<counter>
+			<particles-per-sec>
+				<!--<value>120</value>-->
+				<property>/scenery/RJBM/Aircraft_Washing_System/washing/position-norm</property>
+					<interpolation>
+						<entry>
+							<ind>0.0</ind>
+							<dep>0</dep>
+						</entry>
+						<entry>
+							<ind>0.7</ind>
+							<dep>30</dep>
+						</entry>
+						<entry>
+						<ind>1.0</ind>
+						<dep>75</dep>
+						</entry>
+					</interpolation>
+				<spread>20</spread>
+			</particles-per-sec>
+		</counter>
+		
+<!--		<align>billboard</align>  -->
+		
+		<particle>
+			<start>
+				<color>
+					<red><value>0.9</value></red>
+					<green><value>0.9</value></green>
+					<blue><value>0.9</value></blue>
+					<alpha><value>0.5</value></alpha>
+				</color>
+				<size>
+					<value>0.1</value>
+				</size>
+			</start>
+			
+			<end>
+				<color>
+					<red><value>1.0</value></red>
+					<green><value>1.0</value></green>
+					<blue><value>1.0</value></blue>
+					<alpha><value>0.0</value></alpha>
+				</color>
+				<size>
+					<!--<value>1</value>-->
+					<property>/scenery/RJBM/Aircraft_Washing_System/washing/position-norm</property>
+					<interpolation>
+						<entry>
+							<ind>0.0</ind>
+							<dep>0.1</dep>
+						</entry>
+						<entry>
+							<ind>0.7</ind>
+							<dep>0.1</dep>
+						</entry>
+						<entry>
+						<ind>1.0</ind>
+						<dep>0.5</dep>
+						</entry>
+					</interpolation>
+
+				</size>
+			</end>
+			
+			<life-sec>
+				<value>0.2</value>
+			</life-sec>
+			
+			<mass-kg>0.22</mass-kg>
+			<radius-m>0.22</radius-m>
+		</particle>
+		
+		<program>
+			<fluid>water</fluid>
+			<gravity>true</gravity>
+			<wind>true</wind>
+		</program>
+		
+	</particlesystem>
+
+</PropertyList>

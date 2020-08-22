@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+
+<!-- RJSS RW09 Approach Light Beacon(ALB) -->
+
+	<!-- Default And Rembrandt Strobe Light       -->
+	<model>
+		<path>approach_strobe.ac</path>
+		<offsets>
+			<x-m> 0.0 </x-m>
+			<y-m> 0.0 </y-m>
+			<z-m> 0.0 </z-m>
+			<pitch-deg>0.00</pitch-deg>
+		<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	<animation>
+		<object-name>strobe10000</object-name>
+		<enable-hot type="bool">false</enable-hot>
+	</animation>
+	
+	<animation>
+		<type>flash</type>
+		<object-name>strobe10000</object-name>
+		<center>
+			<x-m> 0.0 </x-m>
+			<y-m> 0.0 </y-m>
+			<z-m> 0.0 </z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0.17365</z>
+		</axis>
+		<power>50</power>
+	</animation>
+
+  <animation>
+    <type>dist-scale</type>
+    <object-name>strobe10000</object-name>
+    <interpolation>
+      <entry>
+        <ind>0</ind>
+        <dep>0.05</dep>
+      </entry>
+      <entry>
+        <ind>300</ind>
+        <dep>0.4</dep>
+      </entry>
+      <entry>
+        <ind>1500</ind>
+        <dep>1.6</dep>
+      </entry>
+      <entry>
+        <ind>6000</ind>
+        <dep>4.8</dep>
+      </entry>
+    </interpolation>
+  </animation>
+</PropertyList>

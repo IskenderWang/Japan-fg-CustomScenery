@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<PropertyList>
+	
+	<!-- RJSS custom runway end lights set  -->
+
+	<!-- ================================================================== -->
+    <!-- Runway Threshold Lights / RTHL                                                       -->
+    <!-- ================================================================== -->
+
+<model>
+	<path>RJSS_runway_end_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m> 1.500 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_runway_end_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m> 4.500 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_runway_end_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m> 7.500 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_runway_end_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m> 10.500 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_runway_end_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m> 13.500 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_runway_end_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m> 16.500 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_runway_end_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m> 19.500 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_runway_end_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m> 22.500 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_runway_end_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m>-1.500 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_runway_end_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m>-4.500 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_runway_end_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m>-7.500 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_runway_end_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m>-10.500 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_runway_end_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m>-13.500 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_runway_end_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m>-16.500 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_runway_end_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m>-19.500 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_runway_end_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m>-22.500 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+
+</PropertyList>
+

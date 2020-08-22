@@ -1,0 +1,32 @@
+AC3Db
+MATERIAL "DefaultWhite" rgb 1.0000 1.0000 1.0000  amb 0.2000 0.2000 0.2000  emis 0.0000 0.0000 0.0000  spec 0.5000 0.5000 0.5000  shi 10 trans 0.0000
+MATERIAL "rwy_end_light_green" rgb 0.0826 1.0000 0.0000  amb 0.4653 0.4653 0.4653  emis 1.0000 1.0000 1.0000  spec 0.2000 0.2000 0.2000  shi 128 trans 0.0000
+OBJECT world
+name "Blender_exporter_v2.10__runway_end_light_green.ac"
+kids 1
+OBJECT poly
+name "rwy_end_light_green"
+data 19
+GreenLight6000.mesh
+crease 61.0
+texture "runway_end_green_light.png"
+texrep 1 1
+numvert 4
+-5.24500 10.55000 0.00000
+5.24500 0.06000 0.00000
+-5.24500 0.06000 0.00000
+5.24500 10.55000 0.00000
+numsurf 2
+SURF 0X10
+mat 1
+refs 3
+0 1.015100 1.004700
+1 0.016100 0.005600
+2 1.015100 0.005600
+SURF 0X10
+mat 1
+refs 3
+1 0.016100 0.005600
+0 1.015100 1.004700
+3 0.016100 1.004700
+kids 0

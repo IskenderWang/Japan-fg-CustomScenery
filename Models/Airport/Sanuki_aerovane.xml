@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+ <path>Sanuki_aerovane.ac</path>
+
+ <animation>
+  <type>range</type>
+  <min-m>0</min-m>
+  <max-m>2000</max-m>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>group_prop</object-name>
+  <object-name>group_airframe</object-name>
+  <property>/environment/wind-from-heading-deg</property>
+  <offset-deg>0</offset-deg>
+  <factor>-1</factor>
+  <axis>
+   <x>0.0</x>
+   <y>0.0</y>
+   <z>1.0</z>
+  </axis>
+  <center>
+   <x-m>0.0</x-m>
+   <y-m>0.0</y-m>
+   <z-m>0.0</z-m>
+  </center>
+ </animation>
+
+ <animation>
+  <type>spin</type>
+  <object-name>group_prop</object-name>
+  <property>/environment/wind-speed-kt</property>
+  <factor>-10</factor>
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+  <center>
+   <x-m>-0.1</x-m>
+   <y-m>0.0</y-m>
+   <z-m>0.0</z-m>
+  </center>
+ </animation>
+
+</PropertyList>

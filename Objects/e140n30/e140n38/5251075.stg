@@ -1,0 +1,17 @@
+OBJECT_SHARED Models/Airport//Kakuda/Kakuda_bank.ac 140.804465 38.008870 10.6 90
+
+OBJECT_SHARED Models/Airport/Kakuda/EjiriBridge.ac 140.79821 38.01889 16 40
+OBJECT_SHARED Models/Airport/Kakuda/HigashineRoadwayBridge.ac 140.80243 38.01669 16 61
+OBJECT_SHARED Models/Airport/Kakuda/KozakuraBridge.ac 140.78807 38.01666 11 90
+
+#OBJECT_SHARED Models/Airport/Kakuda/SendaiTROPO.ac 140.84342 37.99086 243.96 228
+OBJECT_SHARED Models/Airport/Kakuda/FunaokaKannon.ac 140.75494 38.05368 119.45 10
+OBJECT_SHARED Models/Airport/Kakuda/GenericStorageTank20m_light_green.ac 140.79692 38.02471 -48 0
+OBJECT_SHARED Models/Airport/Kakuda/GenericStorageTank20m_light_green.ac 140.79694 38.02570 -35 0
+OBJECT_SHARED Models/Airport/Kakuda/SUBARU_15-40.xml 140.79622 38.00806 9 0
+
+OBJECT_SHARED Models/Airport/Kakuda/glider_trailer_blue.ac 140.80197 38.01032 9.65 43
+OBJECT_SHARED Models/Airport/Kakuda/glider_trailer_fg02.ac 140.80217 38.01018 9.8 43
+OBJECT_SHARED Models/Airport/Kakuda/glider_trailer_fg03.ac 140.80230 38.01009 9.85 223
+OBJECT_SHARED Models/Airport/Kakuda/ASK-13_Trailer.ac 140.80265 38.00988 10.2 270
+OBJECT_SHARED Models/Airport/Kakuda/glider_trailer_red.ac 140.80183 38.01043 9.65 43

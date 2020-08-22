@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<PropertyList>
+	
+	<!-- RJSS custom runway end lights set  -->
+
+	<!-- ================================================================== -->
+    <!-- Runway Threshold Lights / RTHL                                                       -->
+    <!-- ================================================================== -->
+
+<model>
+	<path>RJSS_runway_end_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_runway_end_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m> 3.000 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_runway_end_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m> 6.000 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_runway_end_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m> 9.000 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_runway_end_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m> 12.000 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_runway_end_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m> 15.000 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_runway_end_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m> 18.000 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_runway_end_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m> 21.000 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_runway_end_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m>-3.000 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_runway_end_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m>-6.000 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_runway_end_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m>-9.000 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_runway_end_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m>-12.000 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_runway_end_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m>-15.000 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_runway_end_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m>-18.000 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_runway_end_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m>-21.000 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+	<!-- ================================================================== -->
+    <!-- Wing Bar Lights / WBAR                                                       -->
+    <!-- ================================================================== -->
+
+<model>
+	<path>WBAR_pole.ac</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m> 24.000 </y-m>
+      <z-m> 0.300 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>	
+	
+	<model>
+	<path>wing_bar_light_set.xml</path>
+	<offsets>
+		<x-m> 0.200 </x-m>
+		<y-m> 24.000 </y-m>
+		<z-m> 0.400 </z-m>
+		<pitch-deg> -5.00</pitch-deg>
+		<heading-deg>0.0 </heading-deg>
+	</offsets>
+	</model>
+
+<model>
+	<path>WBAR_pole.ac</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m> 27.000 </y-m>
+      <z-m> 0.300 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>	
+	
+	<model>
+	<path>wing_bar_light_set.xml</path>
+	<offsets>
+		<x-m> 0.200 </x-m>
+		<y-m> 27.000 </y-m>
+		<z-m> 0.400 </z-m>
+		<pitch-deg> -5.00</pitch-deg>
+		<heading-deg>0.0 </heading-deg>
+	</offsets>
+	</model>
+
+<model>
+	<path>WBAR_pole.ac</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m> 30.000 </y-m>
+      <z-m> 0.300 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>	
+	
+	<model>
+	<path>wing_bar_light_set.xml</path>
+	<offsets>
+		<x-m> 0.200 </x-m>
+		<y-m> 30.000 </y-m>
+		<z-m> 0.400 </z-m>
+		<pitch-deg> -5.00</pitch-deg>
+		<heading-deg>0.0 </heading-deg>
+	</offsets>
+	</model>
+
+<model>
+	<path>WBAR_pole.ac</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m> 33.000 </y-m>
+      <z-m> 0.300 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>	
+	
+	<model>
+	<path>wing_bar_light_set.xml</path>
+	<offsets>
+		<x-m> 0.200 </x-m>
+		<y-m> 33.000 </y-m>
+		<z-m> 0.400 </z-m>
+		<pitch-deg> -5.00</pitch-deg>
+		<heading-deg>0.0 </heading-deg>
+	</offsets>
+	</model>
+
+<model>
+	<path>WBAR_pole.ac</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m> 36.000 </y-m>
+      <z-m> 0.300 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>	
+	
+	<model>
+	<path>wing_bar_light_set.xml</path>
+	<offsets>
+		<x-m> 0.200 </x-m>
+		<y-m> 36.000 </y-m>
+		<z-m> 0.400 </z-m>
+		<pitch-deg> -5.00</pitch-deg>
+		<heading-deg>0.0 </heading-deg>
+	</offsets>
+	</model>
+
+<model>
+	<path>WBAR_pole.ac</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m>-24.000 </y-m>
+      <z-m> 0.300 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>	
+	
+	<model>
+	<path>wing_bar_light_set.xml</path>
+	<offsets>
+		<x-m> 0.200 </x-m>
+		<y-m>-24.000 </y-m>
+		<z-m> 0.400 </z-m>
+		<pitch-deg> -5.00</pitch-deg>
+		<heading-deg>0.0 </heading-deg>
+	</offsets>
+	</model>
+
+<model>
+	<path>WBAR_pole.ac</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m>-27.000 </y-m>
+      <z-m> 0.300 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>	
+	
+	<model>
+	<path>wing_bar_light_set.xml</path>
+	<offsets>
+		<x-m> 0.200 </x-m>
+		<y-m>-27.000 </y-m>
+		<z-m> 0.400 </z-m>
+		<pitch-deg> -5.00</pitch-deg>
+		<heading-deg>0.0 </heading-deg>
+	</offsets>
+	</model>
+
+<model>
+	<path>FHB.ac</path>
+    <offsets>
+      <x-m> 0.00 </x-m>
+      <y-m>-30.000 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+	
+<model>
+	<path>wing_bar_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m>-30.000 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>FHB.ac</path>
+    <offsets>
+      <x-m> 0.00 </x-m>
+      <y-m>-33.000 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>wing_bar_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m>-33.000 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>FHB.ac</path>
+    <offsets>
+      <x-m> 0.00 </x-m>
+      <y-m>-36.000 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>wing_bar_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m>-36.000 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>FHB.ac</path>
+    <offsets>
+      <x-m> 0.00 </x-m>
+      <y-m>-39.000 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>wing_bar_light_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m>-39.000 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+
+</PropertyList>
+

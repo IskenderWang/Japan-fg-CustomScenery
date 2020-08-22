@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+ <path>sendai_terminal3.ac</path>
+
+<animation>
+  <type>range</type>
+  <object-name>Deck.001</object-name>
+  <object-name>Deck.002</object-name>
+  <object-name>Deck.003</object-name>
+  <object-name>Text</object-name>
+  <object-name>Text.001</object-name>
+  <object-name>Text.004</object-name>
+  <object-name>Text.005</object-name>
+  <object-name>Cube.010</object-name>
+  <min-m>0</min-m>
+  <max-property>/sim/rendering/static-lod/detailed</max-property>
+ </animation>
+
+<!--<animation>
+  <type>range</type>
+  <object-name>FirstFloor</object-name>
+  <min-m>0</min-m>
+  <max-property>/sim/rendering/static-lod/rough</max-property>
+ </animation>-->
+
+<!-- Light animation -->
+  <animation>
+    	<type>material</type>
+    		<object-name>Text.001</object-name>
+    <condition><property>/scenery/RJSS/JamcoNo2Hangar/lightsSwitch</property></condition>
+    	<emission>	
+	    <red>2.0</red>	
+	    <green>0.0</green>	
+	    <blue>0.0</blue>
+	    <factor-prop>/scenery/RJSS/JamcoNo2Hangar/lightsFactor</factor-prop>
+    	</emission>
+  </animation>
+
+</PropertyList>

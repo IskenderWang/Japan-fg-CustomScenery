@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+ <path>Sendai_Weather_Station.ac</path>
+
+ <effect>
+  <inherits-from>Effects/model-transparent</inherits-from>
+  <object-name>glass</object-name>
+  <object-name>glass2</object-name>
+  <condition>
+         <property>/sim/rendering/rembrandt/enabled</property>
+  </condition>
+ </effect>
+
+ <animation>
+  <type>alpha-test</type>
+  <object-name>Building</object-name>
+  <alpha-factor>0.80</alpha-factor>
+ </animation>
+
+ 	<model>
+		<path>../../../Models/Effects/Warning_lights/LowIntensityRedLight.xml</path>
+		<offsets>
+			<x-m> -12.83 </x-m>
+			<y-m> 16.13 </y-m>
+			<z-m> 34.50 </z-m>
+			<pitch-deg>0.0</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+ 	<model>
+		<path>../../../Models/Effects/Warning_lights/LowIntensityRedLight.xml</path>
+		<offsets>
+			<x-m> -22.77 </x-m>
+			<y-m> 16.13 </y-m>
+			<z-m> 34.50 </z-m>
+			<pitch-deg>0.0</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+ 	<model>
+		<path>../../../Models/Effects/Warning_lights/LowIntensityRedLight.xml</path>
+		<offsets>
+			<x-m> -17.8 </x-m>
+			<y-m> 24.75 </y-m>
+			<z-m> 34.50 </z-m>
+			<pitch-deg>0.0</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+
+</PropertyList>

@@ -1,0 +1,71 @@
+# osm2city_e140n40_e141n42_5267762
+# do not edit below this line
+# Last Written Sat Dec 12 01:20:03 2015
+#
+OBJECT_STATIC e140n40_e141n42_5267762city0503.ac 141.58625 42.79119 76.14 0
+OBJECT_STATIC e140n40_e141n42_5267762city0504.ac 141.58625 42.83620 63.27 0
+OBJECT_STATIC e140n40_e141n42_5267762city0603.ac 141.64738 42.79119 30.36 0
+OBJECT_STATIC e140n40_e141n42_5267762city0604.ac 141.64738 42.83620 20.08 0
+OBJECT_STATIC e140n40_e141n42_5267762city0703.ac 141.70852 42.79119 22.65 0
+OBJECT_STATIC e140n40_e141n42_5267762city0704.ac 141.70852 42.83620 15.81 0
+# END osm2city_e140n40_e141n42_5267762
+# genbuild_e140n40_e141n42_5267762
+# do not edit below this line
+# Last Written Sat Dec 12 10:12:17 2015
+#
+OBJECT_SHARED Models/Residential/germanvillagehouse1.xml 141.60702 42.81604 25.66 143.539
+OBJECT_SHARED Models/Residential/MontserratHse3Green.xml 141.60690 42.81599 25.57 142.261
+OBJECT_SHARED Models/Residential/French_House.ac 141.60656 42.81568 25.07 142.268
+OBJECT_SHARED Models/Residential/MontserratHse3Green.xml 141.60629 42.81541 25.39 142.81
+OBJECT_SHARED Models/Residential/French_House.ac 141.60614 42.81528 25.59 142.81
+OBJECT_SHARED Models/Residential/French_House.ac 141.60597 42.81515 26.33 131.645
+OBJECT_SHARED Models/Residential/MontserratHse3Green.xml 141.60584 42.81504 26.98 131.645
+OBJECT_SHARED Models/Residential/French_House.ac 141.60564 42.81495 26.77 122.066
+OBJECT_SHARED Models/Residential/germanvillagehouse1.xml 141.60533 42.81475 26.39 122.066
+OBJECT_SHARED Models/Residential/French_House.ac 141.60604 42.81478 26.02 311.645
+OBJECT_SHARED Models/Residential/MontserratHse3Green.xml 141.60617 42.81489 25.37 311.645
+OBJECT_SHARED Models/Residential/germanvillagehouse1.xml 141.60641 42.81512 24.76 322.81
+OBJECT_SHARED Models/Residential/MontserratHse3Green.xml 141.60653 42.81517 24.54 322.81
+OBJECT_SHARED Models/Residential/French_House.ac 141.60667 42.81529 24.34 322.81
+OBJECT_SHARED Models/Residential/germanvillagehouse1.xml 141.60687 42.81556 24.18 322.268
+OBJECT_SHARED Models/Residential/French_House.ac 141.60703 42.81564 23.89 322.268
+OBJECT_SHARED Models/Residential/French_House.ac 141.60484 42.81564 31.95 291.885
+OBJECT_SHARED Models/Residential/French_House.ac 141.60507 42.81570 31.28 291.885
+OBJECT_SHARED Models/Residential/MontserratHse3Green.xml 141.60524 42.81577 30.99 291.885
+OBJECT_SHARED Models/Residential/germanvillagehouse1.xml 141.60558 42.81591 30.80 291.885
+OBJECT_SHARED Models/Residential/French_House.ac 141.60452 42.81585 39.14 111.885
+OBJECT_SHARED Models/Residential/germanvillagehouse1.xml 141.60435 42.81534 30.29 113.794
+OBJECT_SHARED Models/Residential/MontserratHse3Green.xml 141.60421 42.81533 31.45 113.794
+OBJECT_SHARED Models/Residential/germanvillagehouse1.xml 141.60388 42.81519 30.19 113.794
+OBJECT_SHARED Models/Residential/French_House.ac 141.60369 42.81518 30.91 113.794
+OBJECT_SHARED Models/Residential/germanvillagehouse1.xml 141.60394 42.81500 26.53 293.794
+OBJECT_SHARED Models/Residential/French_House.ac 141.60412 42.81501 25.40 293.794
+OBJECT_SHARED Models/Residential/germanvillagehouse1.xml 141.60447 42.81517 25.77 293.794
+OBJECT_SHARED Models/Residential/French_House.ac 141.60499 42.81528 25.99 290.589
+OBJECT_SHARED Models/Residential/germanvillagehouse1.xml 141.60535 42.81543 26.42 290.589
+OBJECT_SHARED Models/Residential/MontserratHse3Green.xml 141.60549 42.81543 26.59 290.589
+OBJECT_SHARED Models/Residential/French_House.ac 141.60736 42.81566 23.12 235.508
+OBJECT_SHARED Models/Residential/MontserratHse3Green.xml 141.60753 42.81558 22.62 235.508
+OBJECT_SHARED Models/Residential/MontserratHse3Green.xml 141.60767 42.81551 22.21 233.966
+OBJECT_SHARED Models/Residential/French_House.ac 141.60798 42.81568 21.68 51.1906
+OBJECT_SHARED Models/Residential/MontserratHse3Green.xml 141.60780 42.81577 22.20 55.5081
+OBJECT_SHARED Models/Residential/French_House.ac 141.60763 42.81587 22.95 55.5081
+OBJECT_SHARED Models/Residential/French_House.ac 141.60743 42.81597 24.17 55.5081
+OBJECT_SHARED Models/Residential/French_House.ac 141.60668 42.81614 27.58 17.6217
+OBJECT_SHARED Models/Residential/MontserratHse3Green.xml 141.60584 42.81594 29.59 195.21
+OBJECT_SHARED Models/Residential/germanvillagehouse1.xml 141.60618 42.81588 26.54 15.2102
+OBJECT_SHARED Models/Residential/MontserratHse3Green.xml 141.60367 42.81460 24.66 267.635
+OBJECT_SHARED Models/Residential/MontserratHse3Green.xml 141.60384 42.81459 24.74 267.635
+OBJECT_SHARED Models/Residential/MontserratHse3Green.xml 141.60576 42.81546 26.91 141.663
+OBJECT_SHARED Models/Residential/French_House.ac 141.60430 42.81577 39.58 115.437
+OBJECT_SHARED Models/Residential/germanvillagehouse1.xml 141.60331 42.81493 29.65 182.211
+OBJECT_SHARED Models/Residential/French_House.ac 141.60326 42.81479 28.09 182.213
+OBJECT_SHARED Models/Residential/French_House.ac 141.60327 42.81462 25.46 185.975
+OBJECT_SHARED Models/Residential/MontserratHse3Green.xml 141.60363 42.81485 26.41 2.21267
+# END genbuild_e140n40_e141n42_5267762
+# osm2city_e140n40_e141n42_5267754
+# do not edit below this line
+# Last Written Sat Dec 12 10:28:33 2015
+#
+OBJECT_STATIC e140n40_e141n42_5267754city0703.ac 141.70765 42.75572 7.77 0
+# END osm2city_e140n40_e141n42_5267754

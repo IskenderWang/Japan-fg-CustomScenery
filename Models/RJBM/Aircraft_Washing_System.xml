@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<PropertyList>
+
+	<!-- Automatic act. based on SP-distance  -->
+	<!-- and MP-distance of Aircrafts.        -->
+
+	<path>Models/Airport/RJBM/Aircraft_Washing_System.ac</path>
+	<!-- <path>../../../Models/RJBM/Aircraft_Washing_System.ac</path> -->
+	
+	<animation>
+		<type>noshadow</type>
+		<object-name>Plane.001</object-name>
+	</animation>
+
+	<animation>
+		<object-name>Plane.001</object-name>
+		<enable-hot type="bool">false</enable-hot>
+	</animation>
+
+		
+	<nasal>
+		<load>
+		<![CDATA[
+			print("loading Aircraft Washing System");
+
+			
+			#Ground Marker Position Center is target area
+			#135.378349 35.488825
+			var truck_lon = 135.37835804;
+			var truck_lat = 35.48883583;
+			var truck_alt = 6.1502;
+			
+			var act_time = 0;
+			
+			var door = aircraft.door.new("/scenery/RJBM/Aircraft_Washing_System/washing", 10);
+			
+			#MP distance check
+			var register = func {
+				#print("register() called");
+				foreach (var mp_aircraft; props.globals.getNode("/ai/models").getChildren("multiplayer")) {
+					var callsign = mp_aircraft.getNode("callsign").getValue() or 0;
+					if (callsign != nil) {
+						var custo_id = mp_aircraft.getNode("id").getValue() or -1;
+						if (custo_id != nil) {
+						#var n = mp_aircraft.getIndex();
+						#print ("customer callsign  ", callsign);
+							if (custo_id < 0){
+								#print ("customer ", callsign, "position not available or mp inactive");
+							} else {
+								#print ("customer position available");
+								var custo_lat = mp_aircraft.getNode("position/latitude-deg").getValue() or 0;
+								if (custo_lat != nil) {
+									var custo_long = mp_aircraft.getNode("position/longitude-deg").getValue() or 0;
+									if (custo_long != nil) {
+										#var custo_trueair = mp_aircraft.getNode("velocities/true-airspeed-kt").getValue();
+										
+										var custo_mp = geo.Coord.new();
+											custo_mp.set_latlon( custo_lat, custo_long);
+										var truck_pos_mp = geo.Coord.new();
+											truck_pos_mp.set_latlon( truck_lat, truck_lon, truck_alt);
+										
+										var mp_distance = truck_pos_mp.distance_to(custo_mp);
+										#print ("Customer:  ", callsign, " distance to truck: ", mp_distance, " meter");
+											
+										#door.move(3.00 > mp_distance);
+											if (3.00 > mp_distance){
+												act_time = 120;
+												print ("MP customer activated the aircraft washing");
+											}
+									}
+								}
+							}	
+							#setprop("/scenery/LOWI/LOJO_deicing_truck/customer["~n~"]/callsign", callsign);
+							#setprop("/scenery/LOWI/LOJO_deicing_truck/customer["~n~"]/index", n);
+						}
+					}
+				}
+			}
+			
+			
+			#SP distance check
+			var self_register = func {
+				#print ("self register called");
+				var ac_pos = geo.aircraft_position();
+						var truck_pos_self = geo.Coord.new();
+						truck_pos_self.set_latlon( truck_lat, truck_lon, truck_alt);
+						var self_distance = truck_pos_self.distance_to(ac_pos);
+						#print ("Customer: USER distance to truck: ", self_distance);
+							
+				#door.move(25.00 &gt; self_distance);
+				#door.move(3.00 > self_distance);
+				if (3.00 > self_distance){
+					act_time = 120;
+					print ("SP customer activated the aircraft washing");
+				}
+			
+			
+			}
+			
+			#var loop_id = 0;
+			#main loop
+			var loop = func(id) {
+				#id == loop_id or return;
+								
+				var simtime = props.globals.getNode("/sim/time/elapsed-sec").getValue() or 0;
+				#print ("simtime", simtime);
+				
+				#checking for customers
+				if ((simtime > 15) and (act_time < 0 )){
+					self_register();
+					register();
+				}
+				
+				#activate washing system
+				if (act_time == 110){
+					#setprop("/scenery/RJBM/Aircraft_Washing_System/washing/position-norm", 1);
+					door.move(1);
+					print ("start washing");
+				}
+				
+				
+				#deactivate washing system
+				if (act_time == 30){
+					#setprop("/scenery/RJBM/Aircraft_Washing_System/washing/position-norm", 0);
+					door.move(0);
+					print ("finish washing");
+				}
+				
+				act_time -= 1;
+				#print ("truck active counter: ", act_time);
+			}
+			var timer1 = maketimer(1, func { loop(id) });
+			timer1.singleShot = 0;
+			timer1.start();
+
+			]]>
+		</load>
+		<unload>
+		timer1.stop();
+		</unload>
+	</nasal>
+
+	
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water.xml</path>
+	<offsets>
+		<x-m>3.6</x-m>
+		<y-m>3.3</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water2.xml</path>
+	<offsets>
+		<x-m>-3.6</x-m>
+		<y-m>3.3</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water.xml</path>
+	<offsets>
+		<x-m>3.6</x-m>
+		<y-m>2.1</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water2.xml</path>
+	<offsets>
+		<x-m>-3.6</x-m>
+		<y-m>2.1</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water.xml</path>
+	<offsets>
+		<x-m>3.6</x-m>
+		<y-m>0.0</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water2.xml</path>
+	<offsets>
+		<x-m>-3.6</x-m>
+		<y-m>0.0</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water.xml</path>
+	<offsets>
+		<x-m>3.6</x-m>
+		<y-m>-1.5</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water2.xml</path>
+	<offsets>
+		<x-m>-3.6</x-m>
+		<y-m>-1.5</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water.xml</path>
+	<offsets>
+		<x-m>3.6</x-m>
+		<y-m>-3.9</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water2.xml</path>
+	<offsets>
+		<x-m>-3.6</x-m>
+		<y-m>-3.9</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water.xml</path>
+	<offsets>
+		<x-m>3.6</x-m>
+		<y-m>-9.3</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water2.xml</path>
+	<offsets>
+		<x-m>-3.6</x-m>
+		<y-m>-9.3</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water3.xml</path>
+	<offsets>
+		<x-m>0.9</x-m>
+		<y-m>2.7</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water3.xml</path>
+	<offsets>
+		<x-m>-0.9</x-m>
+		<y-m>2.7</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water3.xml</path>
+	<offsets>
+		<x-m>0.9</x-m>
+		<y-m>1.5</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water3.xml</path>
+	<offsets>
+		<x-m>-0.9</x-m>
+		<y-m>1.5</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water3.xml</path>
+	<offsets>
+		<x-m>0.9</x-m>
+		<y-m>0.3</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water3.xml</path>
+	<offsets>
+		<x-m>-0.9</x-m>
+		<y-m>0.3</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water3.xml</path>
+	<offsets>
+		<x-m>0.9</x-m>
+		<y-m>-1.2</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water3.xml</path>
+	<offsets>
+		<x-m>-0.9</x-m>
+		<y-m>-1.2</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water3.xml</path>
+	<offsets>
+		<x-m>0.9</x-m>
+		<y-m>-2.4</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water3.xml</path>
+	<offsets>
+		<x-m>-0.9</x-m>
+		<y-m>-2.4</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water4.xml</path>
+	<offsets>
+		<x-m>-0.9</x-m>
+		<y-m>4.5</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water5.xml</path>
+	<offsets>
+		<x-m>0.9</x-m>
+		<y-m>4.5</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water6.xml</path>
+	<offsets>
+		<x-m>0.0</x-m>
+		<y-m>5.4</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water7.xml</path>
+	<offsets>
+		<x-m>-0.9</x-m>
+		<y-m>-3.6</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water8.xml</path>
+	<offsets>
+		<x-m>0.9</x-m>
+		<y-m>-3.6</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water9.xml</path>
+	<offsets>
+		<x-m>0.6</x-m>
+		<y-m>-6.9</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water9.xml</path>
+	<offsets>
+		<x-m>-0.6</x-m>
+		<y-m>-6.9</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water9.xml</path>
+	<offsets>
+		<x-m>1.2</x-m>
+		<y-m>-6.9</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water9.xml</path>
+	<offsets>
+		<x-m>-1.2</x-m>
+		<y-m>-6.9</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water10.xml</path>
+	<offsets>
+		<x-m>5.1</x-m>
+		<y-m>0.0</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water11.xml</path>
+	<offsets>
+		<x-m>-5.1</x-m>
+		<y-m>0.0</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water12.xml</path>
+	<offsets>
+		<x-m>6.0</x-m>
+		<y-m>0.0</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+<model>
+	<name>washing_water</name>
+	<path>../../../Models/Airport/RJBM/washing_water13.xml</path>
+	<offsets>
+		<x-m>-6.0</x-m>
+		<y-m>0.0</y-m>
+		<z-m>0.0</z-m>
+		<heading-deg>180</heading-deg>
+	</offsets>
+</model>
+
+
+
+<!-- LOD-->
+<animation>
+	<type>range</type>
+	<min-m>0</min-m>
+	<max-m>5500</max-m>
+</animation>
+
+</PropertyList>

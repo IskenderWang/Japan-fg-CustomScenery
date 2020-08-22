@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+ <path>Parking_line1.ac</path>
+
+<!-- <animation>
+  <type>alpha-test</type>
+  <alpha-factor>0.50</alpha-factor>
+ </animation> -->
+
+ <effect>
+  <inherits-from>Effects/model-transparent</inherits-from>
+  <condition>
+         <property>/sim/rendering/rembrandt/enabled</property>
+  </condition>
+ </effect>
+ 
+
+<!-- <animation>
+   <type>noshadow</type>
+   <object-name>Plane.001</object-name>
+ </animation> -->
+
+
+</PropertyList>

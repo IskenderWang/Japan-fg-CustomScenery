@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+ <path>RJBB-wingshuttle2.ac</path>
+
+ <nasal>
+  <load>
+    loop_id = 0;
+
+    setprop("/models/static/rjbb_skytrain1_x", 1);
+    setprop("/models/static/rjbb_skytrain1_richt", 'vor');
+    srand(); 
+
+	var timer = maketimer(1, func(){ 
+					setprop("/models/static/rjbb_skytrain1_richt", 'vor');
+					state = 'vor';
+					});
+
+	var timer2 = maketimer(1, func(){ 
+					#print('train 1 going back');
+					setprop("/models/static/rjbb_skytrain1_richt", 'rueck');
+					state = 'rueck';
+					});
+
+    train_pos = func
+               {
+               x = getprop("/models/static/rjbb_skytrain1_x");
+               state = getprop("/models/static/rjbb_skytrain1_richt");
+               if (state == 'vor')
+                 {
+                 x = x + 1;
+                 }
+               if (state == 'rueck') 
+                 {
+                 x = x - 1;
+                 }
+                 
+               if (x > 1500)
+                 {
+                 timer2.singleShot = 1;
+                 fuzzy = rand() * 10;
+                 #print(fuzzy);
+                 timer2.restart(6+fuzzy);
+                 x = 1500;
+                 setprop("/models/static/rjbb_skytrain1_x", x);
+                 setprop("/models/static/rjbb_skytrain1_richt", 'warte');
+                 state = 'warte';
+                 }
+                 
+               if (1 > x)
+                 {
+                 timer.singleShot = 1;
+                 timer.restart(6);
+                 x = 1;
+                 setprop("/models/static/rjbb_skytrain1_x", x);
+                 setprop("/models/static/rjbb_skytrain1_richt", 'warte');
+                 state = 'warte';
+                 }
+              
+                if ((x == 300) and (state == 'vor'))
+                 {
+               
+                 timer.singleShot = 1;
+                 timer.restart(6);
+                 x = 301;
+                 setprop("/models/static/rjbb_skytrain1_x", x);
+                 setprop("/models/static/rjbb_skytrain1_richt", 'warte');
+                 state = 'warte';
+                 }
+                 
+               if ((x == 300) and (state == 'rueck'))
+                 {
+                 
+                 timer2.singleShot = 1;
+                 timer2.restart(6);
+                 x = 299;
+                 setprop("/models/static/rjbb_skytrain1_x", x);
+                 setprop("/models/static/rjbb_skytrain1_richt", 'warte');
+                 state = 'warte';
+                 }
+              
+               if ((x == 1200) and (state == 'vor'))
+                 {
+               
+                 timer.singleShot = 1;
+                 timer.restart(6);
+                 x = 1201;
+                 setprop("/models/static/rjbb_skytrain1_x", x);
+                 setprop("/models/static/rjbb_skytrain1_richt", 'warte');
+                 state = 'warte';
+                 }
+                 
+               if ((x == 1200) and (state == 'rueck'))
+                 {
+                 
+                 timer2.singleShot = 1;
+                 timer2.restart(6);
+                 x = 1199;
+                 setprop("/models/static/rjbb_skytrain1_x", x);
+                 setprop("/models/static/rjbb_skytrain1_richt", 'warte');
+                 state = 'warte';
+                 }
+             
+               setprop("/models/static/rjbb_skytrain1_x", x);
+              
+               }
+
+    loop = func(id) 
+           {
+           train_pos();
+           id == loop_id or return;
+           settimer(func { loop(id) }, 0.05);
+           }
+
+    loop(loop_id += 1);
+    
+    
+    
+    
+   </load>
+
+   <unload>loop_id += 1</unload>
+ </nasal>
+
+ <animation>
+  <type>range</type>
+  <min-m>0</min-m>
+  <max-m>8000</max-m>
+ </animation>
+
+ <animation>
+  <type>translate</type>
+  <object-name>wingshuttle</object-name>
+  <property>/models/static/rjbb_skytrain1_x</property>
+  <axis>
+   <x>-1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ 
+
+</PropertyList>

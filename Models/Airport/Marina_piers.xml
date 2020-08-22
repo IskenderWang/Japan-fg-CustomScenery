@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+ <path>Marina_piers.ac</path>
+
+ <animation>
+  <object-name>box1</object-name>
+  <object-name>box2</object-name>
+  <enable-hot type="bool">false</enable-hot>
+ </animation>
+</PropertyList>

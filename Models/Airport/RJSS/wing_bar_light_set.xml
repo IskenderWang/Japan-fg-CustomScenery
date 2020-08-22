@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<PropertyList>
+	
+	<!-- RJSS custom runway end lights set  -->
+	
+
+	
+    <!-- ================================================================== -->
+    <!-- ALS Lighting                                                       -->
+    <!-- ================================================================== -->
+	<model>
+	<name>procedural-WBAR-static-green</name>
+	<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_runway_end_green.xml</path>
+	<!--<path>../../../Models/Airport/AP_Lights/Light_effects/approach_light2.ac</path>-->
+	<offsets>
+		<x-m> 0.200 </x-m>
+		<y-m> 0.000 </y-m>
+		<z-m> 0.000 </z-m>
+		<pitch-deg> -5.00</pitch-deg>
+		<heading-deg>0.0 </heading-deg>
+	</offsets>
+	</model>
+
+
+    <!-- ================================================================== -->
+    <!-- Basic And Rembrandt Lighting                                       -->
+    <!-- ================================================================== -->
+
+	<model>
+	<name>WBAR-light-green</name>
+	<path>../../../Models/Airport/AP_Lights/Light_effects/runway_end_light_green.ac</path>
+	<offsets>
+		<x-m> 0.200 </x-m>
+		<y-m> 0.000 </y-m>
+		<z-m> -0.450 </z-m>
+		<pitch-deg> -5.00</pitch-deg>
+		<heading-deg>270.0 </heading-deg>
+	</offsets>
+	</model>
+	
+	
+
+   <effect>
+        <inherits-from>Effects/model-transparent</inherits-from>
+        <object-name>rwy_end_light_green</object-name>
+    </effect>
+
+    <animation>
+        <type>noshadow</type>
+        <object-name>rwy_end_light_green</object-name>
+    </animation>
+
+    <animation>
+        <type>alpha-test</type>
+		<object-name>rwy_end_light_green</object-name>
+        <alpha-factor>0.01</alpha-factor>
+    </animation>
+
+	<animation>
+		<type>scale</type>
+		<object-name>rwy_end_light_green</object-name>
+		<x-offset>0.1</x-offset>
+		<y-offset>0.1</y-offset>
+	<z-offset>0.1</z-offset>
+	</animation>
+
+ <animation>
+        <type>select</type>
+	<object-name>procedural-WBAR-static-green</object-name>
+        <nopreview/>
+        <condition>
+            <and>
+				<or>
+					<greater-than>
+						<property>/sim/time/sun-angle-rad</property>
+						<value>1.4742</value>
+					</greater-than>
+					<less-than>
+						<property>environment/visibility-m</property>
+						<value>4500.00</value>
+					</less-than>
+				</or>
+					<property>/sim/rendering/shaders/skydome</property>
+
+            </and>
+
+        </condition>
+    </animation>
+
+<animation>
+	<type>select</type>
+	<object-name>WBAR-light-green</object-name>
+	<nopreview/>
+		<condition>
+	            <not>
+					<property>/sim/rendering/shaders/skydome</property>
+				</not>
+				<or>
+					<greater-than>
+						<property>/sim/time/sun-angle-rad</property>
+						<value>1.4742</value>
+					</greater-than>
+					<less-than>
+						<property>environment/visibility-m</property>
+						<value>4500.00</value>
+					</less-than>
+				</or>
+	</condition>
+</animation>
+	
+	
+
+	<animation>
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>15000</max-m>
+	</animation>
+	
+</PropertyList>

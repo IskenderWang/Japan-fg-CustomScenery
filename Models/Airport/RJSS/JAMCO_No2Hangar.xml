@@ -1,0 +1,364 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<!-- Modified from LIPY scenery by Bigstones & Default KSFO Scenery-->
+
+  <!--
+      THE FOLLOWING CODE IS USED BY OTHER MODELS IN THE SCENERY!!!!
+      the following properties are used in all the light related effects
+      at RJSS, as a better alternative to using sun-angle-rad directly.
+      Credits for the original idea go to LOWI scenery developers.
+      See their LOWI_garage_main.xml 
+
+      Can be extended with loop freq throttling and weather data:
+      http://forum.flightgear.org/viewtopic.php?p=208233#p208233
+  -->
+  <nasal>
+    <load>
+		<![CDATA[
+		## Animation section
+			if (!contains(globals, "scenery")) globals["scenery"] = {};
+			if (!contains(scenery, "RJSS")) scenery["RJSS"] = {};
+			if (!contains(scenery.RJSS, "JamcoNo2Hangar")) scenery.RJSS["JamcoNo2Hangar"] = {};
+			if (contains(scenery, "sharedDoor")) {
+				scenery.RJSS.JamcoNo2Hangar =
+				{ door :
+				[scenery.sharedDoor.new("/scenery/RJSS/JamcoNo2Hangar/door[0]", 25),
+				]
+			};
+			} else {
+			scenery.RJSS.JamcoNo2Hangar =
+				{ door :
+				[aircraft.door.new("/scenery/RJSS/JamcoNo2Hangar/door[0]", 25),
+				]
+				};
+			}
+
+		
+		
+		## Lightmap section
+			if (!contains(scenery.RJSS.JamcoNo2Hangar, "lightsFactor")) scenery.RJSS.JamcoNo2Hangar.lightmapFactor = nil;
+			if (!contains(scenery.RJSS.JamcoNo2Hangar, "lightsSwitch")) scenery.RJSS.JamcoNo2Hangar.lightSwitch = nil;
+
+			var loopIntervalInSeconds = 1.0;
+			var isActive = 0;
+			var lowerBound = 1.45;
+			var upperBound = 1.60;
+			var updateLightmapFactors = func() {
+				#isActive or return;
+  
+				var sunAngle = getprop("/sim/time/sun-angle-rad") or 0.0;
+  
+				if(sunAngle < lowerBound) {
+					# DAY
+					setprop("/scenery/RJSS/JamcoNo2Hangar/lightsFactor", 0.0);
+					setprop("/scenery/RJSS/JamcoNo2Hangar/lightsSwitch", 0);
+    
+				} else if((lowerBound <= sunAngle) and (sunAngle <= upperBound)) {
+					# DAWN/SUNRISE
+					var lmFactor = (sunAngle - lowerBound) / (upperBound - lowerBound);
+					var lmSwitch = 1; #(lmFactor > 0.5 ? 1 : 0);
+					setprop("/scenery/RJSS/JamcoNo2Hangar/lightsFactor", lmFactor);
+					setprop("/scenery/RJSS/JamcoNo2Hangar/lightsSwitch", lmSwitch);	
+					#    print("sunAngle = ", sunAngle);
+					#    print("MIDDLE lightsFactor = ", lmFactor);
+    
+				} else {
+					# NIGHT
+					setprop("/scenery/RJSS/JamcoNo2Hangar/lightsFactor", 1.0);
+					setprop("/scenery/RJSS/JamcoNo2Hangar/lightsSwitch", 1);
+				}
+
+				#settimer(updateLightmapFactors, loopIntervalInSeconds);
+				lighttimer.restart(loopIntervalInSeconds);
+			}
+			var lighttimer	=	maketimer(loopIntervalInSeconds,updateLightmapFactors);
+			lighttimer.singleShot =1;
+			lighttimer.start();
+		]]>
+    </load>
+    <unload>
+	<![CDATA[
+		if (contains(scenery, "sharedDoor")) {
+		scenery.RJSS.JamcoNo2Hangar.door[0].destroy();
+		}
+		lighttimer.stop();
+	]]>
+
+	</unload>
+
+  </nasal>
+  
+  
+ <path>JAMCO_No2Hangar.ac</path>
+ 
+ <!-- Animation -->
+ <animation>
+ <type>pick</type>
+ <object-name>Door1</object-name>
+ <object-name>Door2</object-name>
+ <object-name>Door3</object-name>
+ <object-name>Door4</object-name>
+ <object-name>Door5</object-name>
+ <object-name>Door6</object-name>
+ <object-name>Door7</object-name>
+ <object-name>Door8</object-name>
+ <object-name>Door9</object-name>
+ <object-name>Door10</object-name>
+ <object-name>Door_Window1</object-name>
+ <object-name>Door_Window2</object-name>
+ <object-name>Door_Window3</object-name>
+ <object-name>Door_Window4</object-name>
+ <object-name>Door_Window5</object-name>
+ <object-name>Door_Window6</object-name>
+ <object-name>Door_Window7</object-name>
+ <object-name>Door_Window8</object-name>
+ <object-name>Door_Window9</object-name>
+ <object-name>Door_Window10</object-name>
+ <visible>true</visible>
+ <action>
+  <name>click</name>
+  <button>0</button>
+  <repeatable>false</repeatable>
+  <binding>
+   <command>nasal</command>
+   <script>scenery.RJSS.JamcoNo2Hangar.door[0].toggle();</script>
+  </binding>
+ </action>
+</animation>
+
+<animation>
+ <type>translate</type>
+ <object-name>Door5</object-name>
+ <object-name>Door_Window5</object-name>
+ <property>/scenery/RJSS/JamcoNo2Hangar/door[0]/position-norm</property>
+ <factor>33</factor>
+ <axis>
+  <x>1</x>
+  <y>0</y>
+  <z>0</z>
+ </axis>
+</animation>
+
+<animation>
+ <type>translate</type>
+ <object-name>Door4</object-name>
+ <object-name>Door_Window4</object-name>
+ <property>/scenery/RJSS/JamcoNo2Hangar/door[0]/position-norm</property>
+ <interpolation>
+	<entry><ind>0.0</ind><dep>0</dep></entry>
+	<entry><ind>0.2</ind><dep>0</dep></entry>
+	<entry><ind>1.0</ind><dep>26.4</dep></entry>
+ </interpolation>
+ <axis>
+  <x>1</x>
+  <y>0</y>
+  <z>0</z>
+ </axis>
+</animation>
+
+<animation>
+ <type>translate</type>
+ <object-name>Door3</object-name>
+ <object-name>Door_Window3</object-name>
+ <property>/scenery/RJSS/JamcoNo2Hangar/door[0]/position-norm</property>
+ <interpolation>
+	<entry><ind>0.0</ind><dep>0</dep></entry>
+	<entry><ind>0.4</ind><dep>0</dep></entry>
+	<entry><ind>1.0</ind><dep>19.8</dep></entry>
+ </interpolation>
+ <axis>
+  <x>1</x>
+  <y>0</y>
+  <z>0</z>
+ </axis>
+</animation>
+
+<animation>
+ <type>translate</type>
+ <object-name>Door2</object-name>
+ <object-name>Door_Window2</object-name>
+ <property>/scenery/RJSS/JamcoNo2Hangar/door[0]/position-norm</property>
+ <interpolation>
+	<entry><ind>0.0</ind><dep>0</dep></entry>
+	<entry><ind>0.6</ind><dep>0</dep></entry>
+	<entry><ind>1.0</ind><dep>13.2</dep></entry>
+ </interpolation>
+ <axis>
+  <x>1</x>
+  <y>0</y>
+  <z>0</z>
+ </axis>
+</animation>
+
+<animation>
+ <type>translate</type>
+ <object-name>Door1</object-name>
+ <object-name>Door_Window1</object-name>
+ <property>/scenery/RJSS/JamcoNo2Hangar/door[0]/position-norm</property>
+ <interpolation>
+	<entry><ind>0.0</ind><dep>0</dep></entry>
+	<entry><ind>0.8</ind><dep>0</dep></entry>
+	<entry><ind>1.0</ind><dep>6.6</dep></entry>
+ </interpolation>
+ <axis>
+  <x>1</x>
+  <y>0</y>
+  <z>0</z>
+ </axis>
+</animation>
+
+<animation>
+ <type>translate</type>
+ <object-name>Door6</object-name>
+ <object-name>Door_Window6</object-name>
+ <property>/scenery/RJSS/JamcoNo2Hangar/door[0]/position-norm</property>
+ <factor>33</factor>
+ <axis>
+  <x>-1</x>
+  <y>0</y>
+  <z>0</z>
+ </axis>
+</animation>
+
+<animation>
+ <type>translate</type>
+ <object-name>Door7</object-name>
+ <object-name>Door_Window7</object-name>
+ <property>/scenery/RJSS/JamcoNo2Hangar/door[0]/position-norm</property>
+ <interpolation>
+	<entry><ind>0.0</ind><dep>0</dep></entry>
+	<entry><ind>0.2</ind><dep>0</dep></entry>
+	<entry><ind>1.0</ind><dep>26.4</dep></entry>
+ </interpolation>
+ <axis>
+  <x>-1</x>
+  <y>0</y>
+  <z>0</z>
+ </axis>
+</animation>
+
+<animation>
+ <type>translate</type>
+ <object-name>Door8</object-name>
+ <object-name>Door_Window8</object-name>
+ <property>/scenery/RJSS/JamcoNo2Hangar/door[0]/position-norm</property>
+ <interpolation>
+	<entry><ind>0.0</ind><dep>0</dep></entry>
+	<entry><ind>0.4</ind><dep>0</dep></entry>
+	<entry><ind>1.0</ind><dep>19.8</dep></entry>
+ </interpolation>
+ <axis>
+  <x>-1</x>
+  <y>0</y>
+  <z>0</z>
+ </axis>
+</animation>
+
+<animation>
+ <type>translate</type>
+ <object-name>Door9</object-name>
+ <object-name>Door_Window9</object-name>
+ <property>/scenery/RJSS/JamcoNo2Hangar/door[0]/position-norm</property>
+ <interpolation>
+	<entry><ind>0.0</ind><dep>0</dep></entry>
+	<entry><ind>0.6</ind><dep>0</dep></entry>
+	<entry><ind>1.0</ind><dep>13.2</dep></entry>
+ </interpolation>
+ <axis>
+  <x>-1</x>
+  <y>0</y>
+  <z>0</z>
+ </axis>
+</animation>
+
+<animation>
+ <type>translate</type>
+ <object-name>Door10</object-name>
+ <object-name>Door_Window10</object-name>
+ <property>/scenery/RJSS/JamcoNo2Hangar/door[0]/position-norm</property>
+ <interpolation>
+	<entry><ind>0.0</ind><dep>0</dep></entry>
+	<entry><ind>0.8</ind><dep>0</dep></entry>
+	<entry><ind>1.0</ind><dep>6.6</dep></entry>
+ </interpolation>
+ <axis>
+  <x>-1</x>
+  <y>0</y>
+  <z>0</z>
+ </axis>
+</animation>
+
+
+ <!-- Lightmap -->
+  <effect>
+    <inherits-from>Effects/model-combined-deferred</inherits-from>
+    	<object-name>Cube</object-name>
+    	<object-name>Door1</object-name>
+    	<object-name>Door2</object-name>
+    	<object-name>Door3</object-name>
+    	<object-name>Door4</object-name>
+    	<object-name>Door5</object-name>
+    	<object-name>Door6</object-name>
+    	<object-name>Door7</object-name>
+    	<object-name>Door8</object-name>
+    	<object-name>Door9</object-name>
+    	<object-name>Door10</object-name>
+    	<object-name>light</object-name>
+  <parameters>
+    <lightmap-enabled type="int"><use>/scenery/RJSS/JamcoNo2Hangar/lightsSwitch</use></lightmap-enabled>
+    <texture n="3">
+      <image>JAMCO_No2Hangar_L.png</image>
+    </texture>
+      <lightmap-factor type="float" n="0">
+        <use>/scenery/RJSS/JamcoNo2Hangar/lightsFactor</use>
+      </lightmap-factor>
+  </parameters>
+  </effect>
+
+  <animation>
+    	<type>material</type>
+    		<object-name>Cube</object-name>
+    		<object-name>Door1</object-name>
+    		<object-name>Door2</object-name>
+    		<object-name>Door3</object-name>
+    		<object-name>Door4</object-name>
+    		<object-name>Door5</object-name>
+    		<object-name>Door6</object-name>
+    		<object-name>Door7</object-name>
+    		<object-name>Door8</object-name>
+    		<object-name>Door9</object-name>
+    		<object-name>Door10</object-name>
+    		<object-name>light</object-name>
+    <condition><property>/scenery/RJSS/JamcoNo2Hangar/lightsSwitch</property></condition>
+    	<emission>	
+	    <red>0.15</red>	
+	    <green>0.15</green>	
+	    <blue>0.1</blue>
+	    <factor-prop>/scenery/RJSS/JamcoNo2Hangar/lightsFactor</factor-prop>
+    	</emission>
+  </animation>
+
+  <animation>
+    	<type>material</type>
+    		<object-name>Door_Window1</object-name>
+    		<object-name>Door_Window2</object-name>
+    		<object-name>Door_Window3</object-name>
+    		<object-name>Door_Window4</object-name>
+    		<object-name>Door_Window5</object-name>
+    		<object-name>Door_Window6</object-name>
+    		<object-name>Door_Window7</object-name>
+    		<object-name>Door_Window8</object-name>
+    		<object-name>Door_Window9</object-name>
+    		<object-name>Door_Window10</object-name>
+    <condition><property>/scenery/RJSS/JamcoNo2Hangar/lightsSwitch</property></condition>
+    	<emission>	
+	    <red>0.8</red>	
+	    <green>0.8</green>	
+	    <blue>0.8</blue>
+	    <factor-prop>/scenery/RJSS/JamcoNo2Hangar/lightsFactor</factor-prop>
+    	</emission>
+  </animation>
+
+</PropertyList>

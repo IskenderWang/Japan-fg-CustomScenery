@@ -1,0 +1,2566 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<PropertyList>
+
+<!-- RJSS Custom Approach Light Set                                -->
+<!-- RWY 27 Approach lights including the Flash Poles in Sendai -->
+<!-- Modified from LOWI_app_light_poles_rwy26_set.xml by ot-666 -->
+
+<nasal>
+	<load>
+	<![CDATA[
+		
+		print("setting RJSS rwy27 sequenced flashing lights system.");
+		var loop_id = 0;
+		var flash_count = 29;
+		var timer_magnification = 1;
+		var next_light = 1/60;
+		
+			var loop1 = func(id)
+			{
+			
+				var delta_time = getprop("/sim/time/delta-realtime-sec");
+				var fps = getprop("/sim/frame-rate");
+
+				if(fps <= 60)
+				{
+				timer_magnification = 60/fps;
+				next_light = delta_time;
+				}
+
+				var flash_num = math.round(flash_count);
+				
+				setprop("/scenery/RJSS/RJSS_r27_app_flash/light-number", flash_num);
+				
+				flash_count -= timer_magnification;
+				
+				if (flash_num < 1)
+				{
+					flash_count = 29;
+				};
+				timer1.restart(next_light);
+			}
+			
+			var flag1 = getprop("/scenery/RJSS/RJSS_r27_app_flash/running");
+			if(flag1 == nil or flag1 == 0){
+				var timer1 = maketimer(next_light, func { loop1(id) });
+				timer1.singleShot =1;
+				setprop("/scenery/RJSS/RJSS_r27_app_flash/running",1);
+				timer1.start();
+				}
+	]]>
+	</load>
+	
+	<unload>
+	<![CDATA[
+		print("Unload RJSS rwy27 sequenced flashing lights system.");
+		timer1.stop();
+		setprop("/scenery/RJSS/RJSS_r27_app_flash/running",0);
+		props.globals.getNode("/scenery").removeChildren("RJSS");
+		]]>
+	</unload>
+	
+</nasal>
+
+<!-- Approach Light - Placing Help - on Runway 26 
+<model>
+	<path>LOWI_app_light_poles_high.ac</path>
+    <offsets>
+      <x-m> -2000.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+-->
+
+<!-- Approach Light - Green static beam set of 18 lamps- THR Runway 26 
+<model>
+	<path>LOWI_app_light_poles_high.ac</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+-->
+<!-- ============================ -->
+<!-- Strobe Light System          -->
+<!-- ============================ -->
+
+<!-- ALS Strobe Light             -->
+
+	<model>
+		<name>procedural-approach-strobe1</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_approach_strobe.xml</path>
+		<offsets>
+			<x-m> 0.550 </x-m>
+			<y-m> 0.500 </y-m>
+			<z-m> 0.720 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>procedural-approach-strobe1</object-name>
+		<nopreview/>
+			<condition>
+		        <and>
+                	<property>/sim/rendering/shaders/skydome</property>
+					<equals>
+						<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+						<value>1.0</value>
+					</equals>
+				</and>
+			</condition>
+    </animation>
+
+	<model>
+		<name>procedural-approach-strobe2</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_approach_strobe.xml</path>
+		<offsets>
+			<x-m> 30.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 1.220 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+			</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>procedural-approach-strobe2</object-name>
+		<nopreview/>
+			<condition>
+		        <and>
+                	<property>/sim/rendering/shaders/skydome</property>
+					<equals>
+						<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+						<value>2.0</value>
+					</equals>
+				</and>
+			</condition>
+    </animation>
+
+	<model>
+		<name>procedural-approach-strobe3</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_approach_strobe.xml</path>
+		<offsets>
+			<x-m> 60.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 1.720 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>procedural-approach-strobe3</object-name>
+		<nopreview/>
+			<condition>
+		        <and>
+                	<property>/sim/rendering/shaders/skydome</property>
+					<equals>
+						<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+						<value>3.0</value>
+					</equals>
+				</and>
+			</condition>
+    </animation>
+
+	<model>
+		<name>procedural-approach-strobe4</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_approach_strobe.xml</path>
+		<offsets>
+			<x-m> 90.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 2.220 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>procedural-approach-strobe4</object-name>
+		<nopreview/>
+			<condition>
+		        <and>
+                	<property>/sim/rendering/shaders/skydome</property>
+					<equals>
+						<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+						<value>4.0</value>
+					</equals>
+				</and>
+			</condition>
+    </animation>
+
+	<model>
+		<name>procedural-approach-strobe5</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_approach_strobe.xml</path>
+		<offsets>
+			<x-m> 120.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 2.720 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>procedural-approach-strobe5</object-name>
+		<nopreview/>
+			<condition>
+		        <and>
+                	<property>/sim/rendering/shaders/skydome</property>
+					<equals>
+						<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+						<value>5.0</value>
+					</equals>
+				</and>
+			</condition>
+    </animation>
+
+	<model>
+		<name>procedural-approach-strobe6</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_approach_strobe.xml</path>
+		<offsets>
+			<x-m> 150.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 3.220 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>procedural-approach-strobe6</object-name>
+		<nopreview/>
+			<condition>
+		        <and>
+                	<property>/sim/rendering/shaders/skydome</property>
+					<equals>
+						<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+						<value>6.0</value>
+					</equals>
+				</and>
+			</condition>
+    </animation>
+
+	<model>
+		<name>procedural-approach-strobe7</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_approach_strobe.xml</path>
+		<offsets>
+			<x-m> 180.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 3.720 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>procedural-approach-strobe7</object-name>
+		<nopreview/>
+			<condition>
+		        <and>
+                	<property>/sim/rendering/shaders/skydome</property>
+					<equals>
+						<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+						<value>7.0</value>
+					</equals>
+				</and>
+			</condition>
+    </animation>
+
+	<model>
+		<name>procedural-approach-strobe8</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_approach_strobe.xml</path>
+		<offsets>
+			<x-m> 210.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 4.220 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+		<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>procedural-approach-strobe8</object-name>
+		<nopreview/>
+			<condition>
+		        <and>
+                	<property>/sim/rendering/shaders/skydome</property>
+					<equals>
+						<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+						<value>8.0</value>
+					</equals>
+				</and>
+			</condition>
+    </animation>
+
+	<model>
+		<name>procedural-approach-strobe9</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_approach_strobe.xml</path>
+		<offsets>
+			<x-m> 240.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 4.720 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>procedural-approach-strobe9</object-name>
+		<nopreview/>
+			<condition>
+		        <and>
+                	<property>/sim/rendering/shaders/skydome</property>
+					<equals>
+						<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+						<value>9.0</value>
+					</equals>
+				</and>
+			</condition>
+    </animation>
+
+	<model>
+		<name>procedural-approach-strobe10</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_approach_strobe.xml</path>
+		<offsets>
+			<x-m> 270.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 5.220 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>procedural-approach-strobe10</object-name>
+		<nopreview/>
+			<condition>
+		        <and>
+                	<property>/sim/rendering/shaders/skydome</property>
+					<equals>
+						<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+						<value>10.0</value>
+					</equals>
+				</and>
+			</condition>
+    </animation>
+
+	<model>
+		<name>procedural-approach-strobe11</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_approach_strobe.xml</path>
+		<offsets>
+			<x-m> 300.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 5.720 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>procedural-approach-strobe11</object-name>
+		<nopreview/>
+			<condition>
+		        <and>
+                	<property>/sim/rendering/shaders/skydome</property>
+					<equals>
+						<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+						<value>11.0</value>
+					</equals>
+				</and>
+			</condition>
+    </animation>
+
+	<model>
+		<name>procedural-approach-strobe12</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_approach_strobe.xml</path>
+		<offsets>
+			<x-m> 330.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 6.220 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>procedural-approach-strobe12</object-name>
+		<nopreview/>
+			<condition>
+		        <and>
+                	<property>/sim/rendering/shaders/skydome</property>
+					<equals>
+						<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+						<value>12.0</value>
+					</equals>
+				</and>
+			</condition>
+    </animation>
+
+	<model>
+		<name>procedural-approach-strobe13</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_approach_strobe.xml</path>
+		<offsets>
+			<x-m> 360.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 6.720 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>procedural-approach-strobe13</object-name>
+		<nopreview/>
+			<condition>
+		        <and>
+                	<property>/sim/rendering/shaders/skydome</property>
+					<equals>
+						<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+						<value>13.0</value>
+					</equals>
+				</and>
+			</condition>
+    </animation>
+
+	<model>
+		<name>procedural-approach-strobe14</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_approach_strobe.xml</path>
+		<offsets>
+			<x-m> 390.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 7.220 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>procedural-approach-strobe14</object-name>
+		<nopreview/>
+			<condition>
+		        <and>
+                	<property>/sim/rendering/shaders/skydome</property>
+					<equals>
+						<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+						<value>14.0</value>
+					</equals>
+				</and>
+			</condition>
+    </animation>
+
+	<model>
+		<name>procedural-approach-strobe15</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_approach_strobe.xml</path>
+		<offsets>
+			<x-m> 420.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 7.720 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>procedural-approach-strobe15</object-name>
+		<nopreview/>
+			<condition>
+		        <and>
+                	<property>/sim/rendering/shaders/skydome</property>
+					<equals>
+						<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+						<value>15.0</value>
+					</equals>
+				</and>
+			</condition>
+    </animation>
+
+	<model>
+		<name>procedural-approach-strobe16</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_approach_strobe.xml</path>
+		<offsets>
+			<x-m> 450.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 8.220 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>procedural-approach-strobe16</object-name>
+		<nopreview/>
+			<condition>
+		        <and>
+                	<property>/sim/rendering/shaders/skydome</property>
+					<equals>
+						<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+						<value>16.0</value>
+					</equals>
+				</and>
+			</condition>
+    </animation>
+
+	<model>
+		<name>procedural-approach-strobe17</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_approach_strobe.xml</path>
+		<offsets>
+			<x-m> 480.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 8.720 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>procedural-approach-strobe17</object-name>
+		<nopreview/>
+			<condition>
+		        <and>
+                	<property>/sim/rendering/shaders/skydome</property>
+					<equals>
+						<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+						<value>17.0</value>
+					</equals>
+				</and>
+			</condition>
+    </animation>
+
+	<model>
+		<name>procedural-approach-strobe18</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_approach_strobe.xml</path>
+		<offsets>
+			<x-m> 510.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 9.220 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>procedural-approach-strobe18</object-name>
+		<nopreview/>
+			<condition>
+		        <and>
+                	<property>/sim/rendering/shaders/skydome</property>
+					<equals>
+						<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+						<value>18.0</value>
+					</equals>
+				</and>
+			</condition>
+    </animation>
+
+	<model>
+		<name>procedural-approach-strobe19</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_approach_strobe.xml</path>
+		<offsets>
+			<x-m> 540.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 9.720 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>procedural-approach-strobe19</object-name>
+		<nopreview/>
+			<condition>
+		        <and>
+                	<property>/sim/rendering/shaders/skydome</property>
+					<equals>
+						<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+						<value>19.0</value>
+					</equals>
+				</and>
+			</condition>
+    </animation>
+
+	<model>
+		<name>procedural-approach-strobe20</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_approach_strobe.xml</path>
+		<offsets>
+			<x-m> 570.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 10.220 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>procedural-approach-strobe20</object-name>
+		<nopreview/>
+			<condition>
+		        <and>
+                	<property>/sim/rendering/shaders/skydome</property>
+					<equals>
+						<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+						<value>20.0</value>
+					</equals>
+				</and>
+			</condition>
+    </animation>
+
+	<model>
+		<name>procedural-approach-strobe21</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_approach_strobe.xml</path>
+		<offsets>
+			<x-m> 600.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 10.720 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>procedural-approach-strobe21</object-name>
+		<nopreview/>
+			<condition>
+		        <and>
+                	<property>/sim/rendering/shaders/skydome</property>
+					<equals>
+						<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+						<value>21.0</value>
+					</equals>
+				</and>
+			</condition>
+    </animation>
+
+	<model>
+		<name>procedural-approach-strobe22</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_approach_strobe.xml</path>
+		<offsets>
+			<x-m> 630.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 11.220 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>procedural-approach-strobe22</object-name>
+		<nopreview/>
+			<condition>
+		        <and>
+                	<property>/sim/rendering/shaders/skydome</property>
+					<equals>
+						<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+						<value>22.0</value>
+					</equals>
+				</and>
+			</condition>
+    </animation>
+
+	<model>
+		<name>procedural-approach-strobe23</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_approach_strobe.xml</path>
+		<offsets>
+			<x-m> 660.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 11.720 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>procedural-approach-strobe23</object-name>
+		<nopreview/>
+			<condition>
+		        <and>
+                	<property>/sim/rendering/shaders/skydome</property>
+					<equals>
+						<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+						<value>23.0</value>
+					</equals>
+				</and>
+			</condition>
+    </animation>
+
+	<model>
+		<name>procedural-approach-strobe24</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_approach_strobe.xml</path>
+		<offsets>
+			<x-m> 690.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 12.220 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>procedural-approach-strobe24</object-name>
+		<nopreview/>
+			<condition>
+		        <and>
+                	<property>/sim/rendering/shaders/skydome</property>
+					<equals>
+						<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+						<value>24.0</value>
+					</equals>
+				</and>
+			</condition>
+    </animation>
+
+	<model>
+		<name>procedural-approach-strobe25</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_approach_strobe.xml</path>
+		<offsets>
+			<x-m> 720.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 12.720 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>procedural-approach-strobe25</object-name>
+		<nopreview/>
+			<condition>
+		        <and>
+                	<property>/sim/rendering/shaders/skydome</property>
+					<equals>
+						<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+						<value>25.0</value>
+					</equals>
+				</and>
+			</condition>
+    </animation>
+
+	<model>
+		<name>procedural-approach-strobe26</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_approach_strobe.xml</path>
+		<offsets>
+			<x-m> 750.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 13.220 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>procedural-approach-strobe26</object-name>
+		<nopreview/>
+			<condition>
+		        <and>
+                	<property>/sim/rendering/shaders/skydome</property>
+					<equals>
+						<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+						<value>26.0</value>
+					</equals>
+				</and>
+			</condition>
+    </animation>
+
+	<model>
+		<name>procedural-approach-strobe27</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_approach_strobe.xml</path>
+		<offsets>
+			<x-m> 780.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 13.720 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>procedural-approach-strobe27</object-name>
+		<nopreview/>
+			<condition>
+		        <and>
+                	<property>/sim/rendering/shaders/skydome</property>
+					<equals>
+						<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+						<value>27.0</value>
+					</equals>
+				</and>
+			</condition>
+    </animation>
+
+	<model>
+		<name>procedural-approach-strobe28</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_approach_strobe.xml</path>
+		<offsets>
+			<x-m> 810.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 14.220 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>procedural-approach-strobe28</object-name>
+		<nopreview/>
+			<condition>
+		        <and>
+                	<property>/sim/rendering/shaders/skydome</property>
+					<equals>
+						<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+						<value>28.0</value>
+					</equals>
+				</and>
+			</condition>
+    </animation>
+
+	<model>
+		<name>procedural-approach-strobe29</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_approach_strobe.xml</path>
+		<offsets>
+			<x-m> 840.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 14.720 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>procedural-approach-strobe29</object-name>
+		<nopreview/>
+			<condition>
+		        <and>
+                	<property>/sim/rendering/shaders/skydome</property>
+					<equals>
+						<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+						<value>29.0</value>
+					</equals>
+				</and>
+			</condition>
+    </animation>
+
+    <animation>
+    <name>procedural-approach-strobe</name>
+        <object-name>procedural-approach-strobe1</object-name>
+        <object-name>procedural-approach-strobe2</object-name>
+        <object-name>procedural-approach-strobe3</object-name>
+        <object-name>procedural-approach-strobe4</object-name>
+        <object-name>procedural-approach-strobe5</object-name>
+        <object-name>procedural-approach-strobe6</object-name>
+        <object-name>procedural-approach-strobe7</object-name>
+        <object-name>procedural-approach-strobe8</object-name>
+        <object-name>procedural-approach-strobe9</object-name>
+        <object-name>procedural-approach-strobe10</object-name>
+        <object-name>procedural-approach-strobe11</object-name>
+        <object-name>procedural-approach-strobe12</object-name>
+        <object-name>procedural-approach-strobe13</object-name>
+        <object-name>procedural-approach-strobe14</object-name>
+        <object-name>procedural-approach-strobe15</object-name>
+        <object-name>procedural-approach-strobe16</object-name>
+        <object-name>procedural-approach-strobe17</object-name>
+        <object-name>procedural-approach-strobe18</object-name>
+        <object-name>procedural-approach-strobe19</object-name>
+        <object-name>procedural-approach-strobe20</object-name>
+        <object-name>procedural-approach-strobe21</object-name>
+        <object-name>procedural-approach-strobe22</object-name>
+        <object-name>procedural-approach-strobe23</object-name>
+        <object-name>procedural-approach-strobe24</object-name>
+        <object-name>procedural-approach-strobe25</object-name>
+        <object-name>procedural-approach-strobe26</object-name>
+        <object-name>procedural-approach-strobe27</object-name>
+        <object-name>procedural-approach-strobe28</object-name>
+        <object-name>procedural-approach-strobe29</object-name>
+    </animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>procedural-approach-strobe</object-name>
+		<condition>
+			<and>
+				<equals>
+					<property>/scenery/RJSS/Using_rwy27</property>
+					<value>1</value>
+				</equals>
+				<or>
+					<greater-than>
+						<property>/sim/time/sun-angle-rad</property>
+						<value>1.4742</value>
+					</greater-than>
+					<less-than>
+						<property>environment/visibility-m</property>
+						<value>4500.00</value>
+					</less-than>
+				</or>
+			</and>
+		</condition>
+	</animation>
+
+	<!-- Default And Rembrandt Strobe Light       -->
+
+	<model>
+        <name>approach-strobe-light1</name>
+        <path>../../../Models/Airport/AP_Lights/Light_effects/approach_strobe.ac</path>
+		<offsets>
+			<x-m> 0.550 </x-m>
+			<y-m> 0.500 </y-m>
+			<z-m> 0.720 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>approach-strobe-light1</object-name>
+			<condition>
+		        <not>
+					<property>/sim/rendering/shaders/skydome</property>
+				</not>
+				<equals>
+					<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+					<value>1.0</value>
+				</equals>
+			</condition>
+    </animation>
+
+	<model>
+        <name>approach-strobe-light2</name>
+        <path>../../../Models/Airport/AP_Lights/Light_effects/approach_strobe.ac</path>
+		<offsets>
+			<x-m> 30.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 1.220 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+			</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>approach-strobe-light2</object-name>
+			<condition>
+		        <not>
+					<property>/sim/rendering/shaders/skydome</property>
+				</not>
+				<equals>
+					<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+					<value>2.0</value>
+				</equals>
+			</condition>
+    </animation>
+
+	<model>
+        <name>approach-strobe-light3</name>
+        <path>../../../Models/Airport/AP_Lights/Light_effects/approach_strobe.ac</path>
+		<offsets>
+			<x-m> 60.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 1.720 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>approach-strobe-light3</object-name>
+			<condition>
+		        <not>
+					<property>/sim/rendering/shaders/skydome</property>
+				</not>
+				<equals>
+					<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+					<value>3.0</value>
+				</equals>
+			</condition>
+    </animation>
+
+	<model>
+        <name>approach-strobe-light4</name>
+        <path>../../../Models/Airport/AP_Lights/Light_effects/approach_strobe.ac</path>
+		<offsets>
+			<x-m> 90.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 2.220 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>approach-strobe-light4</object-name>
+			<condition>
+		        <not>
+					<property>/sim/rendering/shaders/skydome</property>
+				</not>
+				<equals>
+					<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+					<value>4.0</value>
+				</equals>
+			</condition>
+    </animation>
+
+	<model>
+        <name>approach-strobe-light5</name>
+        <path>../../../Models/Airport/AP_Lights/Light_effects/approach_strobe.ac</path>
+		<offsets>
+			<x-m> 120.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 2.720 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>approach-strobe-light5</object-name>
+			<condition>
+		        <not>
+					<property>/sim/rendering/shaders/skydome</property>
+				</not>
+				<equals>
+					<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+					<value>5.0</value>
+				</equals>
+			</condition>
+    </animation>
+
+	<model>
+        <name>approach-strobe-light6</name>
+        <path>../../../Models/Airport/AP_Lights/Light_effects/approach_strobe.ac</path>
+		<offsets>
+			<x-m> 150.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 3.220 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>approach-strobe-light6</object-name>
+			<condition>
+		        <not>
+					<property>/sim/rendering/shaders/skydome</property>
+				</not>
+				<equals>
+					<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+					<value>6.0</value>
+				</equals>
+			</condition>
+    </animation>
+
+	<model>
+        <name>approach-strobe-light7</name>
+        <path>../../../Models/Airport/AP_Lights/Light_effects/approach_strobe.ac</path>
+		<offsets>
+			<x-m> 180.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 3.720 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>approach-strobe-light7</object-name>
+			<condition>
+		        <not>
+					<property>/sim/rendering/shaders/skydome</property>
+				</not>
+				<equals>
+					<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+					<value>7.0</value>
+				</equals>
+			</condition>
+    </animation>
+
+	<model>
+        <name>approach-strobe-light8</name>
+        <path>../../../Models/Airport/AP_Lights/Light_effects/approach_strobe.ac</path>
+		<offsets>
+			<x-m> 210.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 4.220 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+		<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>approach-strobe-light8</object-name>
+			<condition>
+		        <not>
+					<property>/sim/rendering/shaders/skydome</property>
+				</not>
+				<equals>
+					<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+					<value>8.0</value>
+				</equals>
+			</condition>
+    </animation>
+
+	<model>
+        <name>approach-strobe-light9</name>
+        <path>../../../Models/Airport/AP_Lights/Light_effects/approach_strobe.ac</path>
+		<offsets>
+			<x-m> 240.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 4.720 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>approach-strobe-light9</object-name>
+			<condition>
+		        <not>
+					<property>/sim/rendering/shaders/skydome</property>
+				</not>
+				<equals>
+					<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+					<value>9.0</value>
+				</equals>
+			</condition>
+    </animation>
+
+	<model>
+        <name>approach-strobe-light10</name>
+        <path>../../../Models/Airport/AP_Lights/Light_effects/approach_strobe.ac</path>
+		<offsets>
+			<x-m> 270.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 5.220 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+		
+	<animation>
+		<type>select</type>
+		<object-name>approach-strobe-light10</object-name>
+			<condition>
+		        <not>
+					<property>/sim/rendering/shaders/skydome</property>
+				</not>
+				<equals>
+					<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+					<value>10.0</value>
+				</equals>
+			</condition>
+    </animation>
+
+ 	<model>
+        <name>approach-strobe-light11</name>
+        <path>../../../Models/Airport/AP_Lights/Light_effects/approach_strobe.ac</path>
+		<offsets>
+			<x-m> 300.550 </x-m>
+			<y-m> 0.500 </y-m>
+			<z-m> 5.720 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>approach-strobe-light11</object-name>
+			<condition>
+		        <not>
+					<property>/sim/rendering/shaders/skydome</property>
+				</not>
+				<equals>
+					<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+					<value>11.0</value>
+				</equals>
+			</condition>
+    </animation>
+
+	<model>
+        <name>approach-strobe-light12</name>
+        <path>../../../Models/Airport/AP_Lights/Light_effects/approach_strobe.ac</path>
+		<offsets>
+			<x-m> 330.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 6.220 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+			</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>approach-strobe-light12</object-name>
+			<condition>
+		        <not>
+					<property>/sim/rendering/shaders/skydome</property>
+				</not>
+				<equals>
+					<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+					<value>12.0</value>
+				</equals>
+			</condition>
+    </animation>
+
+	<model>
+        <name>approach-strobe-light13</name>
+        <path>../../../Models/Airport/AP_Lights/Light_effects/approach_strobe.ac</path>
+		<offsets>
+			<x-m> 360.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 6.720 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>approach-strobe-light13</object-name>
+			<condition>
+		        <not>
+					<property>/sim/rendering/shaders/skydome</property>
+				</not>
+				<equals>
+					<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+					<value>13.0</value>
+				</equals>
+			</condition>
+    </animation>
+
+	<model>
+        <name>approach-strobe-light14</name>
+        <path>../../../Models/Airport/AP_Lights/Light_effects/approach_strobe.ac</path>
+		<offsets>
+			<x-m> 390.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 7.220 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>approach-strobe-light14</object-name>
+			<condition>
+		        <not>
+					<property>/sim/rendering/shaders/skydome</property>
+				</not>
+				<equals>
+					<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+					<value>14.0</value>
+				</equals>
+			</condition>
+    </animation>
+
+	<model>
+        <name>approach-strobe-light15</name>
+        <path>../../../Models/Airport/AP_Lights/Light_effects/approach_strobe.ac</path>
+		<offsets>
+			<x-m> 420.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 7.720 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>approach-strobe-light15</object-name>
+			<condition>
+		        <not>
+					<property>/sim/rendering/shaders/skydome</property>
+				</not>
+				<equals>
+					<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+					<value>15.0</value>
+				</equals>
+			</condition>
+    </animation>
+
+	<model>
+        <name>approach-strobe-light16</name>
+        <path>../../../Models/Airport/AP_Lights/Light_effects/approach_strobe.ac</path>
+		<offsets>
+			<x-m> 450.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 8.220 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>approach-strobe-light16</object-name>
+			<condition>
+		        <not>
+					<property>/sim/rendering/shaders/skydome</property>
+				</not>
+				<equals>
+					<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+					<value>16.0</value>
+				</equals>
+			</condition>
+    </animation>
+
+	<model>
+        <name>approach-strobe-light17</name>
+        <path>../../../Models/Airport/AP_Lights/Light_effects/approach_strobe.ac</path>
+		<offsets>
+			<x-m> 480.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 8.720 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>approach-strobe-light17</object-name>
+			<condition>
+		        <not>
+					<property>/sim/rendering/shaders/skydome</property>
+				</not>
+				<equals>
+					<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+					<value>17.0</value>
+				</equals>
+			</condition>
+    </animation>
+
+	<model>
+        <name>approach-strobe-light18</name>
+        <path>../../../Models/Airport/AP_Lights/Light_effects/approach_strobe.ac</path>
+		<offsets>
+			<x-m> 510.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 9.220 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+		<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>approach-strobe-light18</object-name>
+			<condition>
+		        <not>
+					<property>/sim/rendering/shaders/skydome</property>
+				</not>
+				<equals>
+					<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+					<value>18.0</value>
+				</equals>
+			</condition>
+    </animation>
+
+	<model>
+        <name>approach-strobe-light19</name>
+        <path>../../../Models/Airport/AP_Lights/Light_effects/approach_strobe.ac</path>
+		<offsets>
+			<x-m> 540.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 9.720 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>approach-strobe-light19</object-name>
+			<condition>
+		        <not>
+					<property>/sim/rendering/shaders/skydome</property>
+				</not>
+				<equals>
+					<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+					<value>19.0</value>
+				</equals>
+			</condition>
+    </animation>
+
+	<model>
+        <name>approach-strobe-light20</name>
+        <path>../../../Models/Airport/AP_Lights/Light_effects/approach_strobe.ac</path>
+		<offsets>
+			<x-m> 570.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 10.220 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+		
+	<animation>
+		<type>select</type>
+		<object-name>approach-strobe-light20</object-name>
+			<condition>
+		        <not>
+					<property>/sim/rendering/shaders/skydome</property>
+				</not>
+				<equals>
+					<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+					<value>20.0</value>
+				</equals>
+			</condition>
+    </animation>
+
+	<model>
+        <name>approach-strobe-light21</name>
+        <path>../../../Models/Airport/AP_Lights/Light_effects/approach_strobe.ac</path>
+		<offsets>
+			<x-m> 600.550 </x-m>
+			<y-m> 0.500 </y-m>
+			<z-m> 10.720 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>approach-strobe-light21</object-name>
+			<condition>
+		        <not>
+					<property>/sim/rendering/shaders/skydome</property>
+				</not>
+				<equals>
+					<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+					<value>21.0</value>
+				</equals>
+			</condition>
+    </animation>
+
+	<model>
+        <name>approach-strobe-light22</name>
+        <path>../../../Models/Airport/AP_Lights/Light_effects/approach_strobe.ac</path>
+		<offsets>
+			<x-m> 630.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 11.220 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+			</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>approach-strobe-light22</object-name>
+			<condition>
+		        <not>
+					<property>/sim/rendering/shaders/skydome</property>
+				</not>
+				<equals>
+					<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+					<value>22.0</value>
+				</equals>
+			</condition>
+    </animation>
+
+	<model>
+        <name>approach-strobe-light23</name>
+        <path>../../../Models/Airport/AP_Lights/Light_effects/approach_strobe.ac</path>
+		<offsets>
+			<x-m> 660.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 11.720 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>approach-strobe-light23</object-name>
+			<condition>
+		        <not>
+					<property>/sim/rendering/shaders/skydome</property>
+				</not>
+				<equals>
+					<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+					<value>23.0</value>
+				</equals>
+			</condition>
+    </animation>
+
+	<model>
+        <name>approach-strobe-light24</name>
+        <path>../../../Models/Airport/AP_Lights/Light_effects/approach_strobe.ac</path>
+		<offsets>
+			<x-m> 690.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 12.220 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>approach-strobe-light24</object-name>
+			<condition>
+		        <not>
+					<property>/sim/rendering/shaders/skydome</property>
+				</not>
+				<equals>
+					<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+					<value>24.0</value>
+				</equals>
+			</condition>
+    </animation>
+
+	<model>
+        <name>approach-strobe-light25</name>
+        <path>../../../Models/Airport/AP_Lights/Light_effects/approach_strobe.ac</path>
+		<offsets>
+			<x-m> 720.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 12.720 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>approach-strobe-light25</object-name>
+			<condition>
+		        <not>
+					<property>/sim/rendering/shaders/skydome</property>
+				</not>
+				<equals>
+					<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+					<value>25.0</value>
+				</equals>
+			</condition>
+    </animation>
+
+	<model>
+        <name>approach-strobe-light26</name>
+        <path>../../../Models/Airport/AP_Lights/Light_effects/approach_strobe.ac</path>
+		<offsets>
+			<x-m> 750.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 13.220 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>approach-strobe-light26</object-name>
+			<condition>
+		        <not>
+					<property>/sim/rendering/shaders/skydome</property>
+				</not>
+				<equals>
+					<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+					<value>26.0</value>
+				</equals>
+			</condition>
+    </animation>
+
+	<model>
+        <name>approach-strobe-light27</name>
+        <path>../../../Models/Airport/AP_Lights/Light_effects/approach_strobe.ac</path>
+		<offsets>
+			<x-m> 780.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 13.720 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>approach-strobe-light27</object-name>
+			<condition>
+		        <not>
+					<property>/sim/rendering/shaders/skydome</property>
+				</not>
+				<equals>
+					<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+					<value>27.0</value>
+				</equals>
+			</condition>
+    </animation>
+
+	<model>
+        <name>approach-strobe-light28</name>
+        <path>../../../Models/Airport/AP_Lights/Light_effects/approach_strobe.ac</path>
+		<offsets>
+			<x-m> 810.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 14.220 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+		<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>approach-strobe-light28</object-name>
+			<condition>
+		        <not>
+					<property>/sim/rendering/shaders/skydome</property>
+				</not>
+				<equals>
+					<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+					<value>28.0</value>
+				</equals>
+			</condition>
+    </animation>
+
+	<model>
+        <name>approach-strobe-light29</name>
+        <path>../../../Models/Airport/AP_Lights/Light_effects/approach_strobe.ac</path>
+		<offsets>
+			<x-m> 840.550 </x-m>
+			<y-m>-0.500 </y-m>
+			<z-m> 14.720 </z-m>
+			<pitch-deg>-7.00</pitch-deg>
+			<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>approach-strobe-light29</object-name>
+			<condition>
+		        <not>
+					<property>/sim/rendering/shaders/skydome</property>
+				</not>
+				<equals>
+					<property>/scenery/RJSS/RJSS_r27_app_flash/light-number</property>
+					<value>29.0</value>
+				</equals>
+			</condition>
+    </animation>
+
+	<animation>
+    <name>approach-strobe-light</name>
+        <object-name>approach-strobe-light1</object-name>
+        <object-name>approach-strobe-light2</object-name>
+        <object-name>approach-strobe-light3</object-name>
+        <object-name>approach-strobe-light4</object-name>
+        <object-name>approach-strobe-light5</object-name>
+        <object-name>approach-strobe-light6</object-name>
+        <object-name>approach-strobe-light7</object-name>
+        <object-name>approach-strobe-light8</object-name>
+        <object-name>approach-strobe-light9</object-name>
+        <object-name>approach-strobe-light10</object-name>
+        <object-name>approach-strobe-light11</object-name>
+        <object-name>approach-strobe-light12</object-name>
+        <object-name>approach-strobe-light13</object-name>
+        <object-name>approach-strobe-light14</object-name>
+        <object-name>approach-strobe-light15</object-name>
+        <object-name>approach-strobe-light16</object-name>
+        <object-name>approach-strobe-light17</object-name>
+        <object-name>approach-strobe-light18</object-name>
+        <object-name>approach-strobe-light19</object-name>
+        <object-name>approach-strobe-light20</object-name>
+        <object-name>approach-strobe-light21</object-name>
+        <object-name>approach-strobe-light22</object-name>
+        <object-name>approach-strobe-light23</object-name>
+        <object-name>approach-strobe-light24</object-name>
+        <object-name>approach-strobe-light25</object-name>
+        <object-name>approach-strobe-light26</object-name>
+        <object-name>approach-strobe-light27</object-name>
+        <object-name>approach-strobe-light28</object-name>
+        <object-name>approach-strobe-light29</object-name>
+    </animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>approach-strobe-light</object-name>
+		<condition>
+			<and>
+				<equals>
+					<property>/scenery/RJSS/Using_rwy27</property>
+					<value>1</value>
+				</equals>
+				<or>
+					<greater-than>
+						<property>/sim/time/sun-angle-rad</property>
+						<value>1.4742</value>
+					</greater-than>
+					<less-than>
+						<property>environment/visibility-m</property>
+						<value>4500.00</value>
+					</less-than>
+				</or>
+			</and>
+		</condition>
+	</animation>
+
+    <effect>
+        <inherits-from>Effects/model-transparent</inherits-from>
+        <object-name>approach-strobe-light</object-name>
+    </effect>
+
+    <animation>
+        <type>noshadow</type>
+        <object-name>approach-strobe-light</object-name>
+    </animation>
+
+    <animation>
+        <type>alpha-test</type>
+        <object-name>approach-strobe-light</object-name>
+        <alpha-factor>0.01</alpha-factor>
+    </animation>
+	
+	<animation>
+		<object-name>approach-strobe-light</object-name>
+		<enable-hot type="bool">false</enable-hot>
+	</animation>
+	
+	
+ <animation>
+  <type>scale</type>
+  <object-name>strobe10000</object-name>
+  <x-offset>1</x-offset>
+  <y-offset>0.4</y-offset>
+  <z-offset>0.4</z-offset>
+ </animation>
+	
+
+	
+<!-- ======================== -->
+<!-- Static Lights And Poles         -->
+<!-- ======================== -->
+
+
+<!-- From Treshhold at x-m 0  -->
+
+<!-- Approach Light small - 0 -->
+<!--<model>
+	<path>RJSS_app_light_pole4.ac</path>
+    <offsets>
+      <x-m>-30.00 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 0.050 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>-->
+
+<model>
+	<path>FHB.ac</path>
+    <offsets>
+      <x-m>-30.00 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>FHB.ac</path>
+    <offsets>
+      <x-m>-30.00 </x-m>
+      <y-m> 1.000 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>FHB.ac</path>
+    <offsets>
+      <x-m>-30.00 </x-m>
+      <y-m> 2.000 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>FHB.ac</path>
+    <offsets>
+      <x-m>-30.00 </x-m>
+      <y-m>-1.000 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>FHB.ac</path>
+    <offsets>
+      <x-m>-30.00 </x-m>
+      <y-m>-2.000 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_app_light_poles_static_set.xml</path>
+    <offsets>
+      <x-m>-30.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 0.020 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<!-- Approach Light small - 1 -->
+<model>
+	<path>RJSS_app_light_pole3.ac</path>
+    <offsets>
+      <x-m> 0.00 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 0.500 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_app_light_poles_static_set.xml</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 0.500 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<!-- Approach Light small - 2 -->
+<model>
+	<path>RJSS_app_light_pole.ac</path>
+    <offsets>
+      <x-m> 30.00 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 1.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_app_light_poles_static_set.xml</path>
+    <offsets>
+      <x-m> 30.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 1.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<!-- Approach Light small - 3 -->
+<model>
+	<path>RJSS_app_light_pole.ac</path>
+    <offsets>
+      <x-m> 60.00 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 1.500 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_app_light_poles_static_set.xml</path>
+    <offsets>
+      <x-m> 60.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 1.500 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<!-- Approach Light small - 4 -->
+<model>
+	<path>RJSS_app_light_pole.ac</path>
+    <offsets>
+      <x-m> 90.00 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 2.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_app_light_poles_static_set.xml</path>
+    <offsets>
+      <x-m> 90.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 2.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<!-- Approach Light small - 5 -->
+<model>
+	<path>RJSS_app_light_pole.ac</path>
+    <offsets>
+      <x-m> 120.00 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 2.500 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_app_light_poles_static_set.xml</path>
+    <offsets>
+      <x-m> 120.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 2.500 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<!-- Approach Light small - 6 -->
+<model>
+	<path>RJSS_app_light_pole.ac</path>
+    <offsets>
+      <x-m> 150.00 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 3.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_app_light_poles_static_set.xml</path>
+    <offsets>
+      <x-m> 150.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 3.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<!-- Approach Light small - 7 -->
+<model>
+	<path>RJSS_app_light_pole.ac</path>
+    <offsets>
+      <x-m> 180.00 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 3.500 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_app_light_poles_static_set.xml</path>
+    <offsets>
+      <x-m> 180.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 3.500 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<!-- Approach Light medium - 8 -->
+<model>
+	<path>RJSS_app_light_pole_medium.ac</path>
+    <offsets>
+      <x-m> 210.00 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 4.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_app_light_poles_static_set.xml</path>
+    <offsets>
+      <x-m> 210.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 4.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<!-- Approach Light large - 9 -->
+<model>
+	<path>RJSS_app_light_pole_large.ac</path>
+    <offsets>
+      <x-m> 240.00 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 4.500 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_app_light_poles_static_large_set.xml</path>
+    <offsets>
+      <x-m> 240.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 4.500 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<!-- Approach Light small - 10 -->
+<model>
+	<path>RJSS_app_light_pole.ac</path>
+    <offsets>
+      <x-m> 270.00 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 5.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_app_light_poles_static_set.xml</path>
+    <offsets>
+      <x-m> 270.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 5.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<!-- Approach Light small - 11 -->
+<model>
+	<path>RJSS_app_light_pole.ac</path>
+    <offsets>
+      <x-m> 300.00 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 5.500 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_app_light_poles_static_set.xml</path>
+    <offsets>
+      <x-m> 300.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 5.500 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<!-- Approach Light small - 12 -->
+<model>
+	<path>RJSS_app_light_pole.ac</path>
+    <offsets>
+      <x-m> 330.00 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 6.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_app_light_poles_static_set.xml</path>
+    <offsets>
+      <x-m> 330.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 6.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<!-- Approach Light small - 13 -->
+<model>
+	<path>RJSS_app_light_pole.ac</path>
+    <offsets>
+      <x-m> 360.00 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 6.500 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_app_light_poles_static_set.xml</path>
+    <offsets>
+      <x-m> 360.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 6.500 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<!-- Approach Light small - 14 -->
+<model>
+	<path>RJSS_app_light_pole.ac</path>
+    <offsets>
+      <x-m> 390.00 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 7.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_app_light_poles_static_set.xml</path>
+    <offsets>
+      <x-m> 390.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 7.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<!-- Approach Light small - 15 -->
+<model>
+	<path>RJSS_app_light_pole.ac</path>
+    <offsets>
+      <x-m> 420.00 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 7.500 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_app_light_poles_static_set.xml</path>
+    <offsets>
+      <x-m> 420.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 7.500 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<!-- Approach Light small - 16 -->
+<model>
+	<path>RJSS_app_light_pole.ac</path>
+    <offsets>
+      <x-m> 450.00 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 8.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_app_light_poles_static_set.xml</path>
+    <offsets>
+      <x-m> 450.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 8.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<!-- Approach Light small - 17 -->
+<model>
+	<path>RJSS_app_light_pole.ac</path>
+    <offsets>
+      <x-m> 480.00 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 8.500 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_app_light_poles_static_set.xml</path>
+    <offsets>
+      <x-m> 480.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 8.700 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<!-- Approach Light small - 18 -->
+<model>
+	<path>RJSS_app_light_pole.ac</path>
+    <offsets>
+      <x-m> 510.00 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 9.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_app_light_poles_static_set.xml</path>
+    <offsets>
+      <x-m> 510.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 9.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<!-- Approach Light small - 19 -->
+<model>
+	<path>RJSS_app_light_pole.ac</path>
+    <offsets>
+      <x-m> 540.00 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 9.500 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_app_light_poles_static_set.xml</path>
+    <offsets>
+      <x-m> 540.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 9.500 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<!-- Approach Light small - 20 -->
+<model>
+	<path>RJSS_app_light_pole.ac</path>
+    <offsets>
+      <x-m> 570.00 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 10.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_app_light_poles_static_set.xml</path>
+    <offsets>
+      <x-m> 570.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 10.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<!-- Approach Light small - 21 -->
+<model>
+	<path>RJSS_app_light_pole.ac</path>
+    <offsets>
+      <x-m> 600.00 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 10.500 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_app_light_poles_static_set.xml</path>
+    <offsets>
+      <x-m> 600.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 10.500 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<!-- Approach Light small - 22 -->
+<model>
+	<path>RJSS_app_light_pole.ac</path>
+    <offsets>
+      <x-m> 630.00 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 11.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_app_light_poles_static_set.xml</path>
+    <offsets>
+      <x-m> 630.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 11.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<!-- Approach Light small - 23 -->
+<model>
+	<path>RJSS_app_light_pole.ac</path>
+    <offsets>
+      <x-m> 660.00 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 11.500 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_app_light_poles_static_set.xml</path>
+    <offsets>
+      <x-m> 660.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 11.500 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<!-- Approach Light small - 24 -->
+<model>
+	<path>RJSS_app_light_pole.ac</path>
+    <offsets>
+      <x-m> 690.00 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 12.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_app_light_poles_static_set.xml</path>
+    <offsets>
+      <x-m> 690.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 12.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<!-- Approach Light small - 25 -->
+<model>
+	<path>RJSS_app_light_pole.ac</path>
+    <offsets>
+      <x-m> 720.00 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 12.500 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_app_light_poles_static_set.xml</path>
+    <offsets>
+      <x-m> 720.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 12.500 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<!-- Approach Light small - 26 -->
+<model>
+	<path>RJSS_app_light_pole.ac</path>
+    <offsets>
+      <x-m> 750.00 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 13.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_app_light_poles_static_set.xml</path>
+    <offsets>
+      <x-m> 750.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 13.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<!-- Approach Light small - 27 -->
+<model>
+	<path>RJSS_app_light_pole.ac</path>
+    <offsets>
+      <x-m> 780.00 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 13.500 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_app_light_poles_static_set.xml</path>
+    <offsets>
+      <x-m> 780.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 13.500 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<!-- Approach Light small - 28 -->
+<model>
+	<path>RJSS_app_light_pole.ac</path>
+    <offsets>
+      <x-m> 810.00 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 14.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_app_light_poles_static_set.xml</path>
+    <offsets>
+      <x-m> 810.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 14.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<!-- Approach Light small - 29 -->
+<model>
+	<path>RJSS_app_light_pole.ac</path>
+    <offsets>
+      <x-m> 840.00 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 14.500 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<model>
+	<path>RJSS_app_light_poles_static_set.xml</path>
+    <offsets>
+      <x-m> 840.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 14.500 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+ 
+   <animation>
+    	<type>material</type>
+    		<object-name>Light_cover</object-name>
+    		<object-name>Light_cover.002</object-name>
+    		<object-name>Light_cover.003</object-name>
+    		<object-name>LargeLight_cover</object-name>
+    		<object-name>MediumLight_cover</object-name>
+    <condition>
+		<or>
+					<greater-than>
+						<property>/sim/time/sun-angle-rad</property>
+						<value>1.4742</value>
+					</greater-than>
+					<less-than>
+						<property>environment/visibility-m</property>
+						<value>4500.00</value>
+					</less-than>
+		</or>
+	</condition>
+    	<emission>	
+	    <red>2.0</red>	
+	    <green>1.9</green>	
+	    <blue>1.4</blue>
+    	</emission>
+  </animation>
+
+	<!-- LOD -->
+<!--	<animation>
+	  <type>range</type>
+	  <min-m>0</min-m>
+	  <max-m>20000</max-m>
+    </animation>-->
+	
+
+</PropertyList>
+

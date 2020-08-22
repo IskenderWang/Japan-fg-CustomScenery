@@ -1,0 +1,319 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<nasal>
+	<load>
+	<![CDATA[
+	var INTERVAL = 5;				# check for using runway
+
+	var loop = func(id)
+	{
+		var wind_speed = getprop("/environment/wind-speed-kt");
+		var wind_from = wind_speed ? getprop("/environment/wind-from-heading-deg") : 270;
+		var Angle = (wind_from - 82.56) * D2R;		#RJSS RW09 True heading = 82.56 degree
+		var Tailwind_component = wind_speed * math.cos(Angle);
+		var Crosswind_component = math.abs(wind_speed * math.sin(Angle));
+	
+		if(Tailwind_component>5)
+		{
+			var Using_rwy09 = 1;
+			var Using_rwy27 = 0;
+			setprop("/scenery/RJSS/Using_rwy09",Using_rwy09);
+			setprop("/scenery/RJSS/Using_rwy27",Using_rwy27);
+		}
+		else if(Crosswind_component>15)
+		{
+			var Using_rwy09 = 1;
+			var Using_rwy27 = 1;
+			setprop("/scenery/RJSS/Using_rwy09",Using_rwy09);
+			setprop("/scenery/RJSS/Using_rwy27",Using_rwy27);
+		}
+		else
+		{
+			var Using_rwy09 = 0;
+			var Using_rwy27 = 1;
+			setprop("/scenery/RJSS/Using_rwy09",Using_rwy09);
+			setprop("/scenery/RJSS/Using_rwy27",Using_rwy27);
+		}
+		timer2.restart(INTERVAL);
+	}
+	var timer2 = maketimer(INTERVAL, func { loop(id) });
+	timer2.singleShot =1;
+	timer2.start();
+
+	]]>
+	</load>
+	
+	<unload>
+	<![CDATA[
+		timer2.stop();
+		]]>
+	</unload>
+</nasal>
+
+
+<!-- RJSS RW09 Approach Light Beacon(ALB) -->
+
+<model>
+	<path>ALB.ac</path>
+    <offsets>
+      <x-m> 0.000 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 0.000 </z-m>
+      <pitch-deg> 0.00</pitch-deg>
+	  <heading-deg>0.0 </heading-deg>
+    </offsets>
+</model>
+
+<!-- ALS ALB Light             -->
+
+	<model>
+		<name>procedural-ALB-strobe1</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_ALB_strobe.xml</path>
+		<offsets>
+			<x-m> 0.645 </x-m>
+			<y-m> 0.0 </y-m>
+			<z-m> 0.21753 </z-m>
+			<pitch-deg>-10.00</pitch-deg>
+		<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<model>
+		<name>procedural-ALB-strobe2</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_ALB_strobe.xml</path>
+		<offsets>
+			<x-m> 0.19932 </x-m>
+			<y-m>-0.62343 </y-m>
+			<z-m> 0.21753 </z-m>
+			<pitch-deg>-10.00</pitch-deg>
+		<heading-deg>-72.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<model>
+		<name>procedural-ALB-strobe3</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_ALB_strobe.xml</path>
+		<offsets>
+			<x-m>-0.52182 </x-m>
+			<y-m>-0.37912 </y-m>
+			<z-m> 0.21753 </z-m>
+			<pitch-deg>-10.00</pitch-deg>
+		<heading-deg>-144.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<model>
+		<name>procedural-ALB-strobe4</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_ALB_strobe.xml</path>
+		<offsets>
+			<x-m>-0.52182 </x-m>
+			<y-m> 0.37912 </y-m>
+			<z-m> 0.21753 </z-m>
+			<pitch-deg>-10.00</pitch-deg>
+		<heading-deg>144.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<model>
+		<name>procedural-ALB-strobe5</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/procedural_light_ALB_strobe.xml</path>
+		<offsets>
+			<x-m> 0.19932 </x-m>
+			<y-m> 0.62343 </y-m>
+			<z-m> 0.21753 </z-m>
+			<pitch-deg>-10.00</pitch-deg>
+		<heading-deg>72.0 </heading-deg>
+		</offsets>
+	</model>
+
+	    <animation>
+    <name>procedural-ALB-strobe</name>
+        <object-name>procedural-ALB-strobe1</object-name>
+        <object-name>procedural-ALB-strobe2</object-name>
+        <object-name>procedural-ALB-strobe3</object-name>
+        <object-name>procedural-ALB-strobe4</object-name>
+        <object-name>procedural-ALB-strobe5</object-name>
+    </animation>
+
+	<!-- Default And Rembrandt Strobe Light       -->
+	<model>
+		<name>ALB-strobe-light1</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/ALB_default.xml</path>
+		<offsets>
+			<x-m> 0.645 </x-m>
+			<y-m> 0.0 </y-m>
+			<z-m> 0.21753 </z-m>
+			<pitch-deg>-10.00</pitch-deg>
+		<heading-deg>0.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<model>
+		<name>ALB-strobe-light2</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/ALB_default.xml</path>
+		<offsets>
+			<x-m> 0.19932 </x-m>
+			<y-m>-0.62343 </y-m>
+			<z-m> 0.21753 </z-m>
+			<pitch-deg>-10.00</pitch-deg>
+		<heading-deg>-72.0 </heading-deg>
+		</offsets>
+	</model>
+	
+
+	<model>
+		<name>ALB-strobe-light3</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/ALB_default.xml</path>
+		<offsets>
+			<x-m>-0.52182 </x-m>
+			<y-m>-0.37912 </y-m>
+			<z-m> 0.21753 </z-m>
+			<pitch-deg>-10.00</pitch-deg>
+		<heading-deg>-144.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<model>
+		<name>ALB-strobe-light4</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/ALB_default.xml</path>
+		<offsets>
+			<x-m>-0.52182 </x-m>
+			<y-m> 0.37912 </y-m>
+			<z-m> 0.21753 </z-m>
+			<pitch-deg>-10.00</pitch-deg>
+		<heading-deg>144.0 </heading-deg>
+		</offsets>
+	</model>
+	
+	<model>
+		<name>ALB-strobe-light5</name>
+		<path>../../../Models/Airport/AP_Lights/Light_effects/ALB_default.xml</path>
+		<offsets>
+			<x-m> 0.19932 </x-m>
+			<y-m> 0.62343 </y-m>
+			<z-m> 0.21753 </z-m>
+			<pitch-deg>-10.00</pitch-deg>
+		<heading-deg>72.0 </heading-deg>
+		</offsets>
+	</model>
+
+
+	<animation>
+	<type>select</type>
+	<object-name>procedural-ALB-strobe</object-name>
+	<nopreview/>
+	<condition>
+		<and>
+			<property>/sim/rendering/shaders/skydome</property>
+			<equals>
+				<property>/scenery/RJSS/Using_rwy09</property>
+				<value>1</value>
+			</equals>
+<!--			<or>
+				<greater-than>
+					<property>/sim/time/sun-angle-rad</property>
+					<value>1.4742</value>
+				</greater-than>
+				<less-than>
+					<property>environment/visibility-m</property>
+					<value>4500.00</value>
+				</less-than>
+			</or>-->
+		</and>
+	</condition>
+	</animation>
+
+	<animation>
+    <name>ALB-strobe-light</name>
+        <object-name>ALB-strobe-light1</object-name>
+        <object-name>ALB-strobe-light2</object-name>
+        <object-name>ALB-strobe-light3</object-name>
+        <object-name>ALB-strobe-light4</object-name>
+        <object-name>ALB-strobe-light5</object-name>
+    </animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>ALB-strobe-light</object-name>
+		<condition>
+		    <not>
+				<property>/sim/rendering/shaders/skydome</property>
+			</not>
+			<and>
+				<equals>
+					<property>/scenery/RJSS/Using_rwy09</property>
+					<value>1</value>
+				</equals>
+<!--				<or>
+					<greater-than>
+						<property>/sim/time/sun-angle-rad</property>
+						<value>1.4742</value>
+					</greater-than>
+					<less-than>
+						<property>environment/visibility-m</property>
+						<value>4500.00</value>
+					</less-than>
+				</or>-->
+			</and>
+		</condition>
+	</animation>
+
+    <effect>
+        <inherits-from>Effects/model-transparent</inherits-from>
+        <object-name>ALB-strobe-light</object-name>
+    </effect>
+
+    <animation>
+        <type>noshadow</type>
+        <object-name>ALB-strobe-light</object-name>
+    </animation>
+
+    <animation>
+        <type>alpha-test</type>
+        <object-name>ALB-strobe-light</object-name>
+        <alpha-factor>0.01</alpha-factor>
+    </animation>
+	
+
+	
+
+
+		<animation>
+  <type>rotate</type>
+  <object-name>procedural-ALB-strobe</object-name>
+  <object-name>ALB-strobe-light</object-name>
+  <object-name>Cylinder</object-name>
+  <object-name>Light_cover.005</object-name>
+  <condition>
+				<equals>
+					<property>/scenery/RJSS/Using_rwy09</property>
+					<value>1</value>
+				</equals>
+<!--			<or>
+				<greater-than>
+					<property>/sim/time/sun-angle-rad</property>
+					<value>1.4742</value>
+				</greater-than>
+				<less-than>
+					<property>environment/visibility-m</property>
+					<value>4500.00</value>
+				</less-than>
+			</or>-->
+  </condition>
+  <property>/sim/time/elapsed-sec</property>
+  <factor>72.0</factor>
+  <center>
+   <x-m>0</x-m>
+   <y-m>0</y-m>
+   <z-m>16.8</z-m>
+  </center>
+  <axis>
+   <x>0</x>
+   <y>0</y>
+   <z>1</z>
+  </axis>
+ </animation>
+
+</PropertyList>
