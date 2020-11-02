@@ -1,3 +1,12 @@
+# osm2roads_e140n40_e141n42_5267754
+# do not edit below this line
+# Last Written Sat Dec 12 10:31:23 2015
+#
+OBJECT_STATIC e140n40_e141n42_5267754roads0400.xml 141.77455 42.64750 0.81 0
+OBJECT_STATIC e140n40_e141n42_5267754roads0401.xml 141.77455 42.69251 15.01 0
+OBJECT_STATIC e140n40_e141n42_5267754roads0402.xml 141.77455 42.73752 11.59 0
+# END osm2roads_e140n40_e141n42_5267754
+
 # osm2city_e140n40_e141n42_5267754
 # do not edit below this line
 # Last Written Sat Dec 12 10:28:33 2015

@@ -6,6 +6,8 @@ Combines the scenery from these sources into one pack:
 * https://github.com/inomaty/RJSS-fg-CustomScenery
 * https://github.com/mherweg/RJBB-fg-CustomScenery
 * https://github.com/mherweg/RJCC-fg-CustomScenery
+* https://github.com/legoboyvdlp/RJCC.RJCJ-fg-CustomScenery
+* https://github.com/legoboyvdlp/RJFF-fg-CustomScenery
 
 ***
 

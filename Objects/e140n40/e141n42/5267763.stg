@@ -1,3 +1,19 @@
+# osm2roads_e140n40_e141n42_5267762
+# do not edit below this line
+# Last Written Sat Dec 12 10:08:32 2015
+#
+OBJECT_STATIC e140n40_e141n42_5267762roads0400.xml 141.77510 42.77250 40.97 0
+OBJECT_STATIC e140n40_e141n42_5267762roads0401.xml 141.77510 42.81751 82.42 0
+OBJECT_STATIC e140n40_e141n42_5267762roads0402.xml 141.77510 42.86252 91.21 0
+# END osm2roads_e140n40_e141n42_5267762
+
+# osm2city_e140n40_e141n42_5267754
+# do not edit below this line
+# Last Written Sat Dec 12 10:28:33 2015
+#
+OBJECT_STATIC e140n40_e141n42_5267754city0803.ac 141.76866 42.75572 14.48 0
+# END osm2city_e140n40_e141n42_5267754
+
 # osm2city_e140n40_e141n42_5267754
 # do not edit below this line
 # Last Written Sat Dec 12 10:28:33 2015
