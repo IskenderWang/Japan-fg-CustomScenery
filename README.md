@@ -8,6 +8,7 @@ Combines the scenery from these sources into one pack:
 * https://github.com/mherweg/RJCC-fg-CustomScenery
 * https://github.com/legoboyvdlp/RJCC.RJCJ-fg-CustomScenery
 * https://github.com/legoboyvdlp/RJFF-fg-CustomScenery
+* http://www.grafikavirtual.com/fgfs/?sec=escenarios.php
 
 ***
 
