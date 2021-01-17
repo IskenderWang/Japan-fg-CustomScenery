@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+	<path>RJGG_Terminal.ac</path>
+	
+	<!-- Transposición de texturas nocturnas -->
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>RJGG_windows1</object-name>
+		<object-name>RJGG_windows2</object-name>
+		<object-name>RJGG_walls2</object-name>
+		<object-name>RJGG_jetway_windows1</object-name>
+		<property>/sim/time/sun-angle-rad</property>
+			<step> 1.57 </step>
+			<factor>0.318471338</factor>
+		<center>
+			<x-m> 0 </x-m>
+			<y-m> 0 </y-m>
+			<z-m> 0 </z-m>
+		</center>
+		<axis>
+			<x>  0 </x>
+			<y> -1 </y>
+			<z>  0 </z>
+		</axis>
+	</animation>	
+	
+</PropertyList>

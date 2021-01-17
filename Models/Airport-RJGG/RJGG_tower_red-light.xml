@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<PropertyList>
+    <path>RJGG_tower_red-light.ac</path>
+
+    <animation>
+        <type>noshadow</type>
+        <object-name>RJGG_tower_red-light</object-name>
+    </animation>
+
+    <animation>
+        <type>alpha-test</type>
+        <alpha-factor>0.01</alpha-factor>
+    </animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>RJGG_tower_red-light</object-name>
+		<condition>
+		   <greater-than>
+			  <property>sim/time/sun-angle-rad</property>
+			  <value>1.57</value>
+		   </greater-than>
+		</condition>
+	</animation>
+
+    <animation>
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>10000</max-m>
+    </animation>
+
+	<animation>
+		<type>billboard</type>
+        <object-name>RJGG_tower_red-light</object-name>
+        <spherical type="bool">true</spherical>
+    </animation>
+
+  <animation>
+    <type>dist-scale</type>
+    <object-name>RJGG_tower_red-light</object-name>
+    <interpolation>
+		<entry><ind>0</ind><dep>0.1</dep></entry>
+		<entry><ind>500</ind><dep>0.2</dep></entry>
+		<entry><ind>16000</ind><dep>3</dep></entry>	  
+    </interpolation>
+  </animation>
+
+</PropertyList>
